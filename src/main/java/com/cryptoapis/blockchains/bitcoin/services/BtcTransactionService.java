@@ -1,6 +1,5 @@
 package com.cryptoapis.blockchains.bitcoin.services;
 
-import com.cryptoapis.blockchains.bitcoin.models.BtcAddress.BtcAddressTransactions;
 import com.cryptoapis.blockchains.bitcoin.models.BtcTransaction.BtcTransaction;
 import com.cryptoapis.blockchains.bitcoin.models.BtcTransaction.BtcTransactionBody;
 import com.cryptoapis.blockchains.bitcoin.models.BtcTransaction.BtcTransactionHistorical;
@@ -30,8 +29,6 @@ public class BtcTransactionService extends AbstractServicesConfig {
     public BtcTransactionService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
-
-    protected Logger logger = Logger.getLogger(BtcTransactionService.class.getName());
 
     @Override
     protected String getPath() {
