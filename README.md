@@ -1,7 +1,7 @@
 Java SDK for [CryptoAPIs.io](https://cryptoapis.io/)
 ===========
 
-You can get API [here](https://dashboard.cryptoapis.io/register).
+You can get API key [here](https://dashboard.cryptoapis.io/register).
 -----
 ## How to use
 
