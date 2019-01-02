@@ -1,6 +1,7 @@
 package com.cryptoapis.exchanges.models;
 
 import com.cryptoapis.models.RawJSON;
+import com.google.gson.Gson;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -54,7 +55,6 @@ public class Asset extends RawJSON {
         public void setName(String name) {
             this.name = name;
         }
-
 
         public String get_id() {
             return _id;
@@ -142,6 +142,11 @@ public class Asset extends RawJSON {
 
         public void setChange(BigDecimal change) {
             this.change = change;
+        }
+
+        @Override
+        public String toString() {
+            return new Gson().toJson(this);
         }
     }
 }
