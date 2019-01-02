@@ -2,6 +2,7 @@ package com.cryptoapis.exchanges.models;
 
 import com.cryptoapis.models.RawJSON;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Asset extends RawJSON {
@@ -25,8 +26,15 @@ public class Asset extends RawJSON {
 
     public static class Payload {
         private String assetId;
+        private String originalSymbol;
         private String name;
-        private String cryptoType;
+        private String slug;
+        private boolean cryptoType;
+        private long supply;
+        private long marketCap;
+        private BigDecimal price;
+        private long volume;
+        private BigDecimal change;
         private String _id;
         private int _created;
         private int _lastModified;
@@ -47,13 +55,6 @@ public class Asset extends RawJSON {
             this.name = name;
         }
 
-        public String getCryptoType() {
-            return cryptoType;
-        }
-
-        public void setCryptoType(String cryptoType) {
-            this.cryptoType = cryptoType;
-        }
 
         public String get_id() {
             return _id;
@@ -77,6 +78,70 @@ public class Asset extends RawJSON {
 
         public void set_lastModified(int _lastModified) {
             this._lastModified = _lastModified;
+        }
+
+        public String getOriginalSymbol() {
+            return originalSymbol;
+        }
+
+        public void setOriginalSymbol(String originalSymbol) {
+            this.originalSymbol = originalSymbol;
+        }
+
+        public String getSlug() {
+            return slug;
+        }
+
+        public void setSlug(String slug) {
+            this.slug = slug;
+        }
+
+        public boolean isCryptoType() {
+            return cryptoType;
+        }
+
+        public void setCryptoType(boolean cryptoType) {
+            this.cryptoType = cryptoType;
+        }
+
+        public long getSupply() {
+            return supply;
+        }
+
+        public void setSupply(long supply) {
+            this.supply = supply;
+        }
+
+        public long getMarketCap() {
+            return marketCap;
+        }
+
+        public void setMarketCap(long marketCap) {
+            this.marketCap = marketCap;
+        }
+
+        public BigDecimal getPrice() {
+            return price;
+        }
+
+        public void setPrice(BigDecimal price) {
+            this.price = price;
+        }
+
+        public long getVolume() {
+            return volume;
+        }
+
+        public void setVolume(long volume) {
+            this.volume = volume;
+        }
+
+        public BigDecimal getChange() {
+            return change;
+        }
+
+        public void setChange(BigDecimal change) {
+            this.change = change;
         }
     }
 }
