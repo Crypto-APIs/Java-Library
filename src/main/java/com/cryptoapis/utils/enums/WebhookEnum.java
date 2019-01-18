@@ -4,5 +4,6 @@ public enum WebhookEnum {
     CONFIRMED_TX,
     UNCONFIRMED_TX,
     ADDRESS,
-    NEW_BLOCK
+    NEW_BLOCK,
+    TOKEN
 }

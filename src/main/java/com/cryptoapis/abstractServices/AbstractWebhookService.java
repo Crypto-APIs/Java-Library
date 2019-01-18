@@ -57,6 +57,17 @@ public abstract class AbstractWebhookService extends AbstractServicesConfig {
         return broadcastWebhook(wh);
     }
 
+    public Pair<Webhook, ApiError> createTokenWh(String webhookUrl, String address) {
+        Webhook wh = createWebhook(WebhookEnum.TOKEN.name(), webhookUrl);
+        if (wh != null) {
+            wh.setAddress(address);
+            return broadcastWebhook(wh);
+        }
+
+        return new Pair<>(null, Utils.convertToCustomClass(Utils.setError("Could not create webhook", 13), ApiError.class, null));
+    }
+
+
     public Pair<String, ApiError> deleteWebhook(String whUuid) {
         return Utils.deleteUnit(whUuid, url, endpointConfig);
     }

@@ -75,8 +75,16 @@ public class EthTransactionService extends AbstractServicesConfig {
 
     }
 
+    public Pair<String, ApiError> createTxKeyStoreAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String password) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.Password, password, "new/all");
+    }
+
     public Pair<String, ApiError> createTxPvt(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, String privateKey) {
         return setRawTransactionBody(from, to, gasPrice, gasLimit, value, data, KeyType.PrivateKey, privateKey, "new-pvtkey");
+    }
+
+    public Pair<String, ApiError> createTxPvtAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String privateKey) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.PrivateKey, privateKey, "new-pvtkey/all");
     }
 
     public Pair<String, ApiError> getRawTxBody(String from, String to, BigDecimal value, String data) {
@@ -154,6 +162,13 @@ public class EthTransactionService extends AbstractServicesConfig {
         EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, value, data);
         return sendTx(endpoint, ethRawTransaction);
     }
+
+    private Pair<String, ApiError> setRawTransactionBody(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, KeyType keyType, String key,
+                                                         String endpoint) {
+        EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, gasPrice, gasLimit, data, keyType, key);
+        return sendTx(endpoint, ethRawTransaction);
+    }
+
 
     private Pair<String, ApiError> sendTx(String endpoint, EthRawTransaction ethRawTransaction) {
         ApiResponse res = WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig, ethRawTransaction.toString());

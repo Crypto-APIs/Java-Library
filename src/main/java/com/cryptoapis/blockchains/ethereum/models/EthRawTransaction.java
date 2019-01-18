@@ -43,12 +43,38 @@ public class EthRawTransaction {
         }
     }
 
+
+    private EthRawTransaction(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, KeyType keyType, String key) {
+        this.fromAddress = from;
+        this.toAddress = to;
+
+        if (gasPrice != null)
+            this.gasPrice = gasPrice;
+
+        if (gasLimit != null)
+            this.gasLimit = gasLimit;
+
+        if (keyType == KeyType.PrivateKey) {
+            this.privateKey = key;
+        } else if (keyType == KeyType.Password) {
+            this.password = key;
+        }
+
+        if (data != null) {
+            this.data = data;
+        }
+    }
+
     public static EthRawTransaction createTransaction(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, KeyType keyType, String key) {
         return new EthRawTransaction(from, to, gasPrice, gasLimit, value, data, keyType, key);
     }
 
     public static EthRawTransaction createTransaction(String from, String to, BigDecimal value, String data) {
         return new EthRawTransaction(from, to, value, data);
+    }
+
+    public static EthRawTransaction createTransaction(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, KeyType keyType, String key) {
+        return new EthRawTransaction(from, to, gasPrice, gasLimit, data, keyType, key);
     }
 
     @Override

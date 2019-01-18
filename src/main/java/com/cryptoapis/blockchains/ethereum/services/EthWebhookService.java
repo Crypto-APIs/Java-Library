@@ -52,6 +52,11 @@ public class EthWebhookService extends AbstractWebhookService {
     }
 
     @Override
+    public Pair<Webhook, ApiError> createTokenWh(String webhookUrl, String address) {
+        return super.createTokenWh(webhookUrl, address);
+    }
+
+    @Override
     public Pair<String, ApiError> deleteWebhook(String whUuid) {
         return super.deleteWebhook(whUuid);
     }
