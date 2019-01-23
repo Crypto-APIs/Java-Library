@@ -1,17 +1,20 @@
 package com.cryptoapis.blockchains.ethereum.services;
 
+import com.cryptoapis.blockchains.ethereum.models.EthTransactions.EthPendingTxs;
+import com.cryptoapis.blockchains.ethereum.models.EthTransactions.EthQueuedTxs;
 import com.cryptoapis.models.ApiError;
 import com.cryptoapis.models.ApiResponse;
 import com.cryptoapis.utils.enums.HttpsRequestsEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.cryptoapis.blockchains.ethereum.models.EthRawTransaction;
-import com.cryptoapis.blockchains.ethereum.models.EthTransaction;
+import com.cryptoapis.blockchains.ethereum.models.EthTransactions.EthTransaction;
 import com.cryptoapis.blockchains.ethereum.models.KeyType;
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
 import com.cryptoapis.utils.Utils;
 import com.cryptoapis.utils.config.EndpointConfig;
 import com.cryptoapis.utils.rest.WebServices;
 import javafx.util.Pair;
+import org.apache.log4j.Logger;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -55,12 +58,37 @@ public class EthTransactionService extends AbstractServicesConfig {
         return fetchTransaction(endpoint);
     }
 
-    public Pair<EthTransaction, ApiError> getPendingTxs() {
-        return fetchTransaction("pending");
+    public Pair<EthPendingTxs, ApiError> getPendingTxs() {
+        ApiResponse tx = getApiResponse("pending");
+        ApiError apiError = null;
+        EthPendingTxs txs = null;
+        try {
+            if (tx != null) {
+                txs = mapper.readValue(tx.getResponse(), EthPendingTxs.class);
+            }
+        } catch (IOException e) {
+            apiError = Utils.convertToCustomClass(tx.getResponse(), ApiError.class, endpointConfig);
+        }
+        return new Pair<>(txs, apiError);
     }
 
-    public Pair<EthTransaction, ApiError> getQueuedTxs() {
-        return fetchTransaction("queued");
+    public Pair<EthQueuedTxs, ApiError> getQueuedTxs() {
+        ApiResponse tx = getApiResponse("queued");
+        ApiError apiError = null;
+        EthQueuedTxs txs = null;
+        try {
+            if (tx != null) {
+                txs = mapper.readValue(tx.getResponse(), EthQueuedTxs.class);
+            }
+        } catch (IOException e) {
+            apiError = Utils.convertToCustomClass(tx.getResponse(), ApiError.class, endpointConfig);
+        }
+        return new Pair<>(txs, apiError);
+    }
+
+    private ApiResponse getApiResponse(String endpoint) {
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint),
+                HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 
     public Pair<List<EthTransaction>, ApiError> getTxByIdxAndLimit(int blockNumber, Map<String, String> params) {
@@ -123,7 +151,7 @@ public class EthTransactionService extends AbstractServicesConfig {
 
     private Pair<EthTransaction, ApiError> fetchTransaction(String endpoint) {
         ApiError apiError = null;
-        ApiResponse tx = WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+        ApiResponse tx = getApiResponse(endpoint);
         EthTransaction transaction = null;
         try {
             if (tx != null)
@@ -135,7 +163,7 @@ public class EthTransactionService extends AbstractServicesConfig {
     }
 
     private Pair<List<EthTransaction>, ApiError> getTransactionList(String endpoint) throws JSONException {
-        ApiResponse txs = WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+        ApiResponse txs = getApiResponse(endpoint);
         List<EthTransaction> resultArray = new ArrayList<>();
 
         if (txs != null) {

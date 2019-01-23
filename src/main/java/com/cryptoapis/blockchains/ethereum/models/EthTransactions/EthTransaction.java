@@ -1,4 +1,4 @@
-package com.cryptoapis.blockchains.ethereum.models;
+package com.cryptoapis.blockchains.ethereum.models.EthTransactions;
 
 import com.cryptoapis.models.RawJSON;
 import java.math.BigInteger;
