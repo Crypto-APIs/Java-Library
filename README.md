@@ -746,16 +746,19 @@ System.out.println(response.getKey());
 ### Ethereum - Services/Methods
 
 
-|   AddressService   | BlockchainService |  BlockService  | ContractService | PaymentService |  TokenService   | TransactionService |    WebhookService     |               
-| ------------------ | ----------------- | -------------- | --------------- | -------------- | --------------- | ------------------ | --------------------- |  
-| generateNewAddress | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt    | getTokenBalance | getTx x3           | createNewBlockWh      |
-| getAddressInfo     |                   | getLatestBlock | deploySC        | createPFPwd    | transferPvt     | getTxByIdxAndLimit | createAddressWh       | 
-| getAddressBalance  |                   |                |                 | deletePF       | transferPwd     | createTxKeyStore   | createConfirmedTxWh   |
-| generateAccount    |                   |                |                 | listPayments   |                 | createTxPvt        | createUnconfirmedTxWh |
-| getTxsByAddress    |                   |                |                 | listPHistory   |                 | getRawTxBody       | deleteWebhook         |
-|                    |                   |                |                 |                |                 | estimateGasLimit   | listWebhooks          |
-|                    |                   |                |                 |                |                 | broadcastSignedTx  |                       |
-|             
+|   AddressService   | BlockchainService |  BlockService  | ContractService | PaymentService |  TokenService   | TransactionService  |    WebhookService     |               
+| ------------------ | ----------------- | -------------- | --------------- | -------------- | --------------- | ------------------- | --------------------- |  
+| generateNewAddress | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt    | getTokenBalance | getTx x3            | createNewBlockWh      |
+| getAddressInfo     |                   | getLatestBlock | deploySC        | createPFPwd    | transferPvt     | getTxByIdxAndLimit  | createAddressWh       | 
+| getAddressBalance  |                   |                |                 | deletePF       | transferPwd     | createTxKeyStore    | createConfirmedTxWh   |
+| generateAccount    |                   |                |                 | listPayments   |                 | createTxPvt         | createUnconfirmedTxWh |
+| getTxsByAddress    |                   |                |                 | listPHistory   |                 | getRawTxBody        | createTokenWh         |
+|                    |                   |                |                 |                |                 | estimateGasLimit    | createTxPollWh        |
+|                    |                   |                |                 |                |                 | broadcastSignedTx   | deleteWebhook         |
+|                    |                   |                |                 |                |                 | createTxPvtAll      | listWebhooks          |
+|                    |                   |                |                 |                |                 | createTxKeyStoreAll |                       |
+|                    |                   |                |                 |                |                 | getPendingTxs       |                       |
+|                    |                   |                |                 |                |                 | getQueuedTxs        |                       |
     
                                 
 ### Bitcoin - Services/Methods

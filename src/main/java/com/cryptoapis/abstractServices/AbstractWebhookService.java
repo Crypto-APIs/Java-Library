@@ -67,6 +67,11 @@ public abstract class AbstractWebhookService extends AbstractServicesConfig {
         return new Pair<>(null, Utils.convertToCustomClass(Utils.setError("Could not create webhook", 13), ApiError.class, null));
     }
 
+    public Pair<Webhook, ApiError> createTxPoolWh(String webhookUrl) {
+        Webhook wh = createWebhook(WebhookEnum.TXPOOL.name(), webhookUrl);
+
+        return broadcastWebhook(wh);
+    }
 
     public Pair<String, ApiError> deleteWebhook(String whUuid) {
         return Utils.deleteUnit(whUuid, url, endpointConfig);

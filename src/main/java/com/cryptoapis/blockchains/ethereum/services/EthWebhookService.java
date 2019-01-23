@@ -1,22 +1,12 @@
 package com.cryptoapis.blockchains.ethereum.services;
 
-import com.cryptoapis.abstractServices.AbstractServicesConfig;
 import com.cryptoapis.abstractServices.AbstractWebhookService;
 import com.cryptoapis.models.ApiError;
-import com.cryptoapis.models.ApiResponse;
 import com.cryptoapis.models.Webhook;
-import com.cryptoapis.utils.enums.HttpsRequestsEnum;
-import com.cryptoapis.utils.enums.WebhookEnum;
-import com.cryptoapis.utils.Utils;
 import com.cryptoapis.utils.config.EndpointConfig;
-import com.cryptoapis.utils.rest.WebServices;
 import javafx.util.Pair;
-import org.apache.commons.lang.StringUtils;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EthWebhookService extends AbstractWebhookService {
@@ -48,6 +38,11 @@ public class EthWebhookService extends AbstractWebhookService {
 
     @Override
     public Pair<Webhook, ApiError> createUnconfirmedTxWh(String webhookUrl) {
+        return super.createUnconfirmedTxWh(webhookUrl);
+    }
+
+    @Override
+    public Pair<Webhook, ApiError> createTxPoolWh(String webhookUrl) {
         return super.createUnconfirmedTxWh(webhookUrl);
     }
 

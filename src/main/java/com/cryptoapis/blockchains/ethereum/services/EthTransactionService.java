@@ -55,6 +55,14 @@ public class EthTransactionService extends AbstractServicesConfig {
         return fetchTransaction(endpoint);
     }
 
+    public Pair<EthTransaction, ApiError> getPendingTxs() {
+        return fetchTransaction("pending");
+    }
+
+    public Pair<EthTransaction, ApiError> getQueuedTxs() {
+        return fetchTransaction("queued");
+    }
+
     public Pair<List<EthTransaction>, ApiError> getTxByIdxAndLimit(int blockNumber, Map<String, String> params) {
         String endpoint = String.format("block/%s", blockNumber);
 
