@@ -10,15 +10,15 @@ final String apiKey = "your API key";
 CryptoApis caClient = new CryptoApis(apiKey);
 
 // Choose API connection and network
-Bitcoin btc = caClient.connectToBtc(CryptoApisConstants.MAINNET);
+final Bitcoin btc = caClient.connectToBtc(CryptoApisConstants.MAINNET);
 
-Bitcoin_Cash bch = caClient.connectToBch(CryptoApisConstants.MAINNET);
+final Bitcoin_Cash bch = caClient.connectToBch(CryptoApisConstants.MAINNET);
 
-Litecoin ltc = caClient.connectToLtc(CryptoApisConstants.MAINNET);
+final Litecoin ltc = caClient.connectToLtc(CryptoApisConstants.MAINNET);
 
-Ethereum eth = caClient.connectToEth(CryptoApisConstants.ETHEREUM_MAINNET);
+final Ethereum eth = caClient.connectToEth(CryptoApisConstants.ETHEREUM_MAINNET);
 
-Exchanges exchanges = caClient.connectToExchanges();
+final Exchanges exchanges = caClient.connectToExchanges();
 
 ```
  
@@ -51,7 +51,7 @@ ApiResponse res = ethAddressService.generateAccount(password);
 System.out.println(res.getResponse());
 ```
 
- If the queried createTransaction exists it will print the following (error object will be null):
+ If will print the following:
  
 ```json
 {
@@ -62,7 +62,7 @@ System.out.println(res.getResponse());
 }
 ```
  
-  If an error occurs it will print the following (createTransaction object will be null):
+  If an error occurs, it will print the following (e.g. your password is weak):
   
 ```json
 {
@@ -133,7 +133,7 @@ System.out.println(res.getResponse());
 }
 ```
 
-### Get an existing createTransaction by a given hash:
+### Get an existing transaction by a given hash:
 
 ```java
 final EthTransactionService ethTransactionService = eth.getEthTransactionService();
@@ -141,7 +141,7 @@ ApiResponse res = ethTransactionService.getTx("0xe7abcffe85acf8e6d3186f1378d201b
 System.out.println(res.getResponse());
 ```
 
-If the queried createTransaction exists it will print the following (error object will be null):
+If the queried transaction exists it will print the following:
  
 ```json
  {
@@ -176,7 +176,7 @@ If the queried createTransaction exists it will print the following (error objec
  }
 ```
  
-If an error occurs it will print the following (createTransaction object will be null):
+If transaction is not found, the following message will be printed:
   
 ```json
   {
@@ -201,7 +201,7 @@ ApiResponse res = ethPaymentService.createPFPwd("0x7857af2143cb06ddc1dab5d7844c9
 System.out.println(res.getResponse());
 ```
 
-If the queried transacreateTransactions it will print the following (error object will be null):
+The response will be as follows:
 
 ```json
 {
@@ -217,7 +217,7 @@ If the queried transacreateTransactions it will print the following (error objec
 }
 ```
  
-If password is misspelled the following will be printed (transacreateTransactiont will be null):
+If password is misspelled the following will be printed:
   
 ```json
   {
@@ -233,7 +233,7 @@ If password is misspelled the following will be printed (transacreateTransaction
   }
 ```
   
-### Create transacreateTransaction an account 
+### Create, sign and send a transaction to the blockchain 
 
 ```java
 final EthTransactionService ethTransactionService = eth.getEthTransactionService();
@@ -256,7 +256,7 @@ System.out.println(res.getResponse());
 }
 ```
 
-## Bitcoin, Litecoin and Bitcoin_Cash examples
+## Bitcoin, Litecoin and Bitcoin Cash examples
 ### Generate new address
 
 ```java
@@ -457,7 +457,7 @@ System.out.println(res.getResponse());
 	}
 }
 ```
-### Create, sign and send transaction to the blockchain
+### Create, sign and send a transaction to the blockchain
 ```java
 final TransactionService btcTransactionService = btc.getTransactionService();
 CreateTransaction ct = new CreateTransaction();
