@@ -1,17 +1,16 @@
-package com.cryptoapis.blockchains.ethereum.services;
+package com.cryptoapis.blockchains.bitcoin_based.services;
 
-import com.cryptoapis.common_models.ApiResponse;
-import com.cryptoapis.utils.enums.HttpsRequestsEnum;
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
+import com.cryptoapis.common_models.ApiResponse;
 import com.cryptoapis.utils.config.EndpointConfig;
 import com.cryptoapis.utils.constants.CryptoApisConstants;
+import com.cryptoapis.utils.enums.HttpsRequestsEnum;
 import com.cryptoapis.utils.rest.WebServices;
 
-public class EthBlockService extends AbstractServicesConfig {
+public class BlockService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/blocks/{3}";
 
-
-    public EthBlockService(EndpointConfig endpointConfig) {
+    public BlockService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -21,18 +20,18 @@ public class EthBlockService extends AbstractServicesConfig {
     }
 
     public ApiResponse getBlock(String blockHash) {
-        return fetchBlock(blockHash);
+        return convertJSONtoBlock(blockHash);
     }
 
     public ApiResponse getBlock(int blockNumber) {
-        return fetchBlock(String.format("%s", blockNumber));
+        return convertJSONtoBlock(String.valueOf(blockNumber));
     }
 
     public ApiResponse getLatestBlock() {
-        return fetchBlock(CryptoApisConstants.LATEST);
+        return convertJSONtoBlock(CryptoApisConstants.LATEST);
     }
 
-    private ApiResponse fetchBlock(String endpoint) {
+    private ApiResponse convertJSONtoBlock(String endpoint) {
        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 }

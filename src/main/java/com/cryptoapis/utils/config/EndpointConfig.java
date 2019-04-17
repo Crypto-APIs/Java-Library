@@ -5,13 +5,11 @@ public class EndpointConfig {
     private String version;
     private String blockchain;
     private String network;
-    private Boolean includeRawJSON;
     private String apiKey;
 
-    public EndpointConfig(String version, String apiKey, boolean includeRawJSON) {
+    public EndpointConfig(String version, String apiKey) {
         this.version = version;
         this.apiKey = apiKey;
-        this.includeRawJSON = includeRawJSON;
     }
 
     public String getVersion() {
@@ -28,10 +26,6 @@ public class EndpointConfig {
 
     public String getApiKey() {
         return apiKey;
-    }
-
-    public Boolean getIncludeRawJSON() {
-        return includeRawJSON;
     }
 
     public void setBlockchain(String blockchain) {

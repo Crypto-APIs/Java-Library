@@ -1,11 +1,11 @@
 package com.cryptoapis.blockchains.ethereum.models;
 
-import com.google.gson.Gson;
-
+import com.cryptoapis.common_models.Stringify;
+import com.cryptoapis.utils.enums.KeyType;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class EthRawTransaction {
+public class EthRawTransaction extends Stringify {
 
     private String fromAddress;
     private String toAddress;
@@ -77,8 +77,4 @@ public class EthRawTransaction {
         return new EthRawTransaction(from, to, gasPrice, gasLimit, data, keyType, key);
     }
 
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
 }

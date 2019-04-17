@@ -1,10 +1,10 @@
 package com.cryptoapis.blockchains.ethereum.models;
 
-import com.google.gson.Gson;
+import com.cryptoapis.common_models.Stringify;
 
 import java.math.BigInteger;
 
-public class EthContract {
+public class EthContract extends Stringify {
 
     private String privateKey;
     private String fromAddress;
@@ -24,8 +24,4 @@ public class EthContract {
         return new EthContract(privateKey, fromAddress, gasPrice, gasLimit, byteCode);
     }
 
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
 }

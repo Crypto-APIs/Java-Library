@@ -1,8 +1,8 @@
 package com.cryptoapis.utils.rest;
 
-import com.cryptoapis.models.ApiResponse;
+import com.cryptoapis.common_models.ApiResponse;
 import com.cryptoapis.utils.enums.HttpsRequestsEnum;
-import com.cryptoapis.models.ApiError;
+import com.cryptoapis.common_models.ApiError;
 import com.cryptoapis.utils.Utils;
 import com.cryptoapis.utils.config.EndpointConfig;
 import org.apache.commons.lang.StringUtils;
@@ -127,7 +127,7 @@ public class WebServices {
 
                 errorIn.close();
 
-                ApiError apiError = Utils.convertToCustomClass(response.toString(), ApiError.class, endpointConfig);
+                ApiError apiError = Utils.convertToApiError(response.toString());
                 if (apiError != null) {
                     apiError.setStatusCode(responseCode);
                     apiResponse.setResponse(apiError.toString());

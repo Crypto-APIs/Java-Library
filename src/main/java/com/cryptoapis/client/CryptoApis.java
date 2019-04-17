@@ -1,11 +1,8 @@
 package com.cryptoapis.client;
 
-import com.cryptoapis.connections.Bitcoin;
-import com.cryptoapis.connections.Ethereum;
-import com.cryptoapis.connections.Exchanges;
+import com.cryptoapis.connections.*;
 import com.cryptoapis.utils.config.EndpointConfig;
 import com.cryptoapis.utils.constants.CryptoApisConstants;
-import com.cryptoapis.utils.enums.EnumOptions;
 
 public class CryptoApis implements CryptoApisConstants {
     private String apiKey;
@@ -14,27 +11,34 @@ public class CryptoApis implements CryptoApisConstants {
         this.apiKey = apiKey;
     }
 
-    public Ethereum connectToEth(String network, EnumOptions.IncludeRawJSON includeRawJSON) {
-        return new Ethereum(setBlockChainConfig(CryptoApisConstants.ETHEREUM, network, includeRawJSON));
+    public Ethereum connectToEth(String network) {
+        return new Ethereum(setBlockChainConfig(CryptoApisConstants.ETHEREUM, network));
     }
 
-    public Bitcoin connectToBtc(String network, EnumOptions.IncludeRawJSON includeRawJSON) {
-        return new Bitcoin(setBlockChainConfig(CryptoApisConstants.BITCOIN, network, includeRawJSON));
+    public Bitcoin connectToBtc(String network) {
+        return new Bitcoin(setBlockChainConfig(CryptoApisConstants.BITCOIN, network));
     }
 
-    public Exchanges connectToExchanges(EnumOptions.IncludeRawJSON includeRawJSON) {
-        return new Exchanges(setConfig(includeRawJSON));
+    public Litecoin connectToLtc(String network) {
+        return new Litecoin(setBlockChainConfig(CryptoApisConstants.LITECOIN, network));
     }
 
-    private EndpointConfig setBlockChainConfig(String blockchain, String network, EnumOptions.IncludeRawJSON includeRawJSON) {
-        EndpointConfig newConfig = setConfig(includeRawJSON);
+    public Bitcoin_Cash connectToBch(String network) {
+        return new Bitcoin_Cash(setBlockChainConfig(CryptoApisConstants.BITCOIN_CASH, network));
+    }
+
+    public Exchanges connectToExchanges() {
+        return new Exchanges(setConfig());
+    }
+
+    private EndpointConfig setBlockChainConfig(String blockchain, String network) {
+        EndpointConfig newConfig = setConfig();
         newConfig.setBlockchain(blockchain);
         newConfig.setNetwork(network);
         return newConfig;
     }
 
-    private EndpointConfig setConfig(EnumOptions.IncludeRawJSON includeRawJSON) {
-       return new EndpointConfig(CryptoApisConstants.VERSION_V1, this.apiKey,
-                includeRawJSON == EnumOptions.IncludeRawJSON.True);
+    private EndpointConfig setConfig() {
+       return new EndpointConfig(CryptoApisConstants.VERSION_V1, this.apiKey);
     }
 }

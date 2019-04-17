@@ -1,16 +1,13 @@
-package com.cryptoapis.blockchains.ethereum.services;
+package com.cryptoapis.blockchains.bitcoin_based.services;
 
 import com.cryptoapis.abstractServices.AbstractWebhookService;
 import com.cryptoapis.common_models.ApiResponse;
-import com.cryptoapis.common_models.Webhook;
 import com.cryptoapis.utils.config.EndpointConfig;
-import com.cryptoapis.utils.enums.WebhookEnum;
 
-
-public class EthWebhookService extends AbstractWebhookService {
+public class WebhookService extends AbstractWebhookService {
     private static final String PATH = "/{0}/bc/{1}/{2}/hooks/{3}";
 
-    public EthWebhookService(EndpointConfig endpointConfig) {
+    public WebhookService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -34,19 +31,9 @@ public class EthWebhookService extends AbstractWebhookService {
         return super.createConfirmedTxWh(webhookUrl, transaction, confirmations);
     }
 
-    public ApiResponse createTokenWh(String webhookUrl, String address, int confirmations) {
-        Webhook wh = Webhook.createToken(WebhookEnum.TOKEN.name(), webhookUrl, address, confirmations);
-        return super.broadcastWebhook(wh);
-    }
-
-    public ApiResponse createTXPoolWh(String webhookUrl, String address) {
-        Webhook wh = Webhook.createTXPool(WebhookEnum.TXPOOL.name(), webhookUrl, address);
-        return super.broadcastWebhook(wh);
-    }
-
     @Override
-    public ApiResponse deleteWebhook(String whUuid) {
-        return super.deleteWebhook(whUuid);
+    public ApiResponse deleteWebhook(String webhookId) {
+        return super.deleteWebhook(webhookId);
     }
 
     @Override

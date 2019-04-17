@@ -10,7 +10,7 @@ public abstract class AbstractServicesConfig {
 
     protected AbstractServicesConfig(EndpointConfig endpointConfig) {
         this.endpointConfig = endpointConfig;
-        this.url = CryptoApisConstants.CRYPTOAPIS_ENDPOINT  + getPath();
+        this.url = CryptoApisConstants.CRYPTOAPIS_ENDPOINT + getPath();
     }
 
     protected abstract String getPath();

@@ -1,16 +1,11 @@
 package com.cryptoapis.exchanges.services;
 
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
-import com.cryptoapis.exchanges.models.Asset;
-import com.cryptoapis.exchanges.models.Exchange;
-import com.cryptoapis.exchanges.models.Symbol;
-import com.cryptoapis.models.ApiError;
-import com.cryptoapis.models.ApiResponse;
+import com.cryptoapis.common_models.ApiResponse;
 import com.cryptoapis.utils.Utils;
 import com.cryptoapis.utils.config.EndpointConfig;
-import com.cryptoapis.utils.enums.HttpsRequestsEnum;
-import com.cryptoapis.utils.rest.WebServices;
-import javafx.util.Pair;
+
+import java.util.Map;
 
 public class MetadataService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/{1}";
@@ -24,34 +19,17 @@ public class MetadataService extends AbstractServicesConfig {
         return PATH;
     }
 
-    public Pair<Exchange, ApiError> getExchangesList() {
-        ApiResponse res = WebServices.httpsRequest(WebServices.formatUrlExchanges(url, endpointConfig, "exchanges"), HttpsRequestsEnum.GET.name(),
-                endpointConfig, null);
-        ApiError apiError = Utils.checkForError(res);
-        if (apiError == null && res != null) {
-            return new Pair<>(Utils.convertToCustomClass(res.getResponse(), Exchange.class, endpointConfig), null);
-        }
-        return new Pair<>(null, apiError);
+    public ApiResponse getExchangesList(Map<String, String> params) {
+        return Utils.sendListRequest("exchanges", params, url, endpointConfig);
     }
 
-    public Pair<Asset, ApiError> getAssetsList() {
-        ApiResponse res = WebServices.httpsRequest(WebServices.formatUrlExchanges(url, endpointConfig, "assets"), HttpsRequestsEnum.GET.name(),
-                endpointConfig, null);
-        ApiError apiError = Utils.checkForError(res);
-        if (apiError == null && res != null) {
-            return new Pair<>(Utils.convertToCustomClass(res.getResponse(), Asset.class, endpointConfig), null);
-        }
-        return new Pair<>(null, apiError);
+    public ApiResponse getAssetsList(Map<String, String> params) {
+        return Utils.sendListRequest("assets", params, url, endpointConfig);
     }
 
-    public  Pair<Symbol, ApiError> getSymbolsList() {
-        ApiResponse res = WebServices.httpsRequest(WebServices.formatUrlExchanges(url, endpointConfig, "mappings"), HttpsRequestsEnum.GET.name(),
-                endpointConfig, null);
-
-        ApiError apiError = Utils.checkForError(res);
-        if (apiError == null && res != null) {
-            return new Pair<>(Utils.convertToCustomClass(res.getResponse(), Symbol.class, endpointConfig), null);
-        }
-        return new Pair<>(null, apiError);
+    public ApiResponse getSymbolsList(Map<String, String> params) {
+        return Utils.sendListRequest("mappings", params, url, endpointConfig);
     }
+
+
 }
