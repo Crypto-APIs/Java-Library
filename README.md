@@ -90,7 +90,7 @@ System.out.println(res.getResponse());
 	"payload": {
 		"chain": "ETH.mainnet",
 		"address": "0xd6cb6744b7f2da784c5afd6b023d957188522198",
-		"balance": "1152.66525530903683 Eth",
+		"balance": "1152.66525530903683",
 		"txs_count": 146347,
 		"from": 47476,
 		"to": 98871
@@ -114,21 +114,20 @@ System.out.println(res.getResponse());
         "hash": "0xdd9cda46ecc76633504931d5f7fd4bbff4c39ca3d6d173550f37789a863135b2",
         "parent_hash": "0xa19c2538a3ffa5077645dc1ecef2ef99fcbf9707b106df5536244e87b13d06bc",
         "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
-        "gas_used": 7992049,
-        "total": 8071969490000000,
+        "gas_used": "7992049",
         "size": "5332 bytes",
         "timestamp": 1533919094,
         "date": "2018-08-10 16:38:14 +UTC",
         "transactions": 36,
-        "difficulty": 3544115802240984,
+        "difficulty": "3544115802240984",
         "total_difficulty": "5917863156620322787518",
-        "gas_limit": 8000029,
+        "gas_limit": "8000029",
         "nonce": "0x20f173b005ccec35",
         "mined_by": "0xea674fdde714fd979de3edf0f56aa9716b898ec8 (Ethermine) in 3 secs",
         "uncles": [],
         "extra_data": "0x65746865726d696e652d657538",
         "confirmations": 1455815,
-        "total_fees": 100689146837974998
+        "total_fees": "100689146837974998"
     }
 }
 ```
@@ -156,9 +155,9 @@ If the queried transaction exists it will print the following:
          "date": "2018-12-06 10:09:38 +UTC",
          "block_hash": "0x503c138005347065a606d3d0d02b3528790227b3a17b6fd6b54ce54ed79f144a",
          "block_number": 6836009,
-         "gas": 36657,
-         "gas_price": 97000000000,
-         "gas_used": 36657,
+         "gas": "36657",
+         "gas_price": "97000000000",
+         "gas_used": "36657",
          "nonce": 573,
          "confirmations": 743129,
          "token_transfers": [
@@ -597,6 +596,36 @@ System.out.println(res.getResponse());
 }
 ```
 
+### Create Transaction Using HDWallet
+
+```java
+final Bitcoin_Cash bch = ca.connectToBch("testnet");
+final TransactionService transactionService = bch.getTransactionService();
+
+final String walletName = "demohdwallet";
+final String password = "password";
+
+List<CreateTransaction.Outputs> outputs = new ArrayList<>();
+CreateTransaction.Outputs output = new CreateTransaction.Outputs();
+output.setAddress("my4TmbbhJCLJB9q1eHUHQWJfbbJoYdLwtE");
+output.setValue(0.003);
+outputs.add(output);
+
+CreateTransaction.Fee fee = new CreateTransaction.Fee();
+fee.setValue(0.00023141);
+
+ApiResponse response = transactionService.newTxWithHDWallet(walletName, password, null, outputs, fee, 0);
+System.out.println(response.getResponse());
+```
+
+```json
+{
+  "payload": { 
+       "txid":"1a6bffc375ecd14eb8fa85308baae86a68278cb12d78a2aedbb014c10fb080a1"
+   }
+}
+```
+
 ### Create Confirmed Transaction Webhook
 
 ```java
@@ -894,6 +923,7 @@ System.out.println(res.getResponse());
 |                    |                   |                |                 |                  |                     | getRawTxBody        |                       |
 |                    |                   |                |                 |                  |                     | estimateGasLimit    |                       |
 |                    |                   |                |                 |                  |                     | broadcastSignedTx   |                       |
+|                    |                   |                |                 |                  |                     | getGasFees          |                       |
     
                                 
 ### Bitcoin, Litecoin, Bitcoin_Cash - Services/Methods
@@ -909,8 +939,8 @@ System.out.println(res.getResponse());
 |                        |                   |                |                  | signTx             | getHDWallet             |                       |
 |                        |                   |                |                  | sendTx             | addAddressToWallet      |                       |
 |                        |                   |                |                  | newTx              | generateAddressWallet   |                       |
-|                        |                   |                |                  |                    | generateAddressHDWallet |                       |
-|                        |                   |                |                  |                    | removeAddress           |                       |
+|                        |                   |                |                  | getFees            | generateAddressHDWallet |                       |
+|                        |                   |                |                  | newTxWithHDWallet  | removeAddress           |                       |
 |                        |                   |                |                  |                    | deleteWallet            |                       |
 |                        |                   |                |                  |                    | deleteHDWallet          |                       |
      

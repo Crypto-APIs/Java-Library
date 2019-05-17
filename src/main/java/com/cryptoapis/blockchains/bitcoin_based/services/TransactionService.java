@@ -1,6 +1,7 @@
 package com.cryptoapis.blockchains.bitcoin_based.services;
 
 import com.cryptoapis.blockchains.bitcoin_based.models.Transaction.CompleteTransaction;
+import com.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateHDWalletTransaction;
 import com.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateTransaction;
 import com.cryptoapis.blockchains.bitcoin_based.models.Hex;
 import com.cryptoapis.blockchains.bitcoin_based.models.Transaction.SignTransaction;
@@ -88,9 +89,18 @@ public class TransactionService extends AbstractServicesConfig {
 
     //create, sign and send tx to blockchain
     public ApiResponse newTx(CreateTransaction createTx, List<String> wifs) {
-        System.out.println(CompleteTransaction.createSignAndSend(createTx, wifs).toString());
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "new"), HttpsRequestsEnum.POST.name(), endpointConfig,
                 CompleteTransaction.createSignAndSend(createTx, wifs).toString());
+    }
+
+    public ApiResponse newTxWithHDWallet(String walletName, String password, List<CreateTransaction.Inputs> inputs,
+                                         List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime) {
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "hdwallet"), HttpsRequestsEnum.POST.name(), endpointConfig,
+                CreateHDWalletTransaction.create(walletName, password, inputs, outputs, fee, locktime).toString());
+    }
+
+    public ApiResponse getFees() {
+        return getTransaction("fee", null);
     }
 
     private ApiResponse getTransaction(String endpoint, String params) {

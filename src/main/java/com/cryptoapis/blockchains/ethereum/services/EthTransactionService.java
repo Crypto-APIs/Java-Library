@@ -93,6 +93,10 @@ public class EthTransactionService extends AbstractServicesConfig {
                 endpointConfig, Hex.createHex(hex).toString());
     }
 
+    public ApiResponse getGasFees() {
+        return getApiResponse("fee");
+    }
+
     private ApiResponse setRawTransactionBody(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, KeyType keyType,
                                               String key, String endpoint) {
         EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, gasPrice, gasLimit, value, data, keyType, key);
