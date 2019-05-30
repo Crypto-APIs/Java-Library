@@ -10,16 +10,17 @@ final String apiKey = "your API key";
 CryptoApis caClient = new CryptoApis(apiKey);
 
 // Choose API connection and network
+final Exchanges exchanges = caClient.connectToExchanges();
+
+final Ethereum eth = caClient.connectToEth(CryptoApisConstants.ETHEREUM_MAINNET);
+
 final Bitcoin btc = caClient.connectToBtc(CryptoApisConstants.MAINNET);
 
 final Bitcoin_Cash bch = caClient.connectToBch(CryptoApisConstants.MAINNET);
 
 final Litecoin ltc = caClient.connectToLtc(CryptoApisConstants.MAINNET);
 
-final Ethereum eth = caClient.connectToEth(CryptoApisConstants.ETHEREUM_MAINNET);
-
-final Exchanges exchanges = caClient.connectToExchanges();
-
+final Dogecoin doge = caClient.connectToDoge(CryptoApisConstants.MAINNET);
 ```
  
 ## Ethereum examples
@@ -650,6 +651,30 @@ System.out.println(res.getResponse());
 }
 ```
 
+### Get blockchain info
+
+```java
+final BlockchainService service = doge.getBlockchainService();
+final ApiResponse res = service.getBlockchainInfo();
+
+System.out.println(res.getResponse());
+```
+```json
+{
+    "payload": {
+        "difficulty": 6329995.2247605,
+        "headers": 2745874,
+        "chain": "main",
+        "chainWork": "0000000000000000000000000000000000000000000001eedd07ae5c113b9d92",
+        "blocks": 2745874,
+        "bestBlockHash": "c895d63eb2f7e306bc6d1df85e085d13ed83509dc70ba9ce3f84564461bbd234",
+        "currency": "DOGE",
+        "transactions": 12687555,
+        "verificationProgress": 0.99999946
+    }
+}
+```
+
 ## Exchanges examples
 ### Get specific rate - ExchangeRates
 
@@ -926,7 +951,7 @@ System.out.println(res.getResponse());
 |                    |                   |                |                 |                  |                     | getGasFees          |                       |
     
                                 
-### Bitcoin, Litecoin, Bitcoin_Cash - Services/Methods
+### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
 
 
 |     AddressService     | BlockchainService |  BlockService  |  PaymentService  | TransactionService |       WalletService     |    WebhookService     |               

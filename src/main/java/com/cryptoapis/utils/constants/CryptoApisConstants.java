@@ -7,9 +7,10 @@ public interface CryptoApisConstants {
     String ETHEREUM = "eth";
     String LITECOIN = "ltc";
     String BITCOIN_CASH = "bch";
+    String DOGECOIN = "doge";
 
     //networks
-    //btc, ltc, bch
+    //btc, ltc, bch, doge
     String MAINNET = "mainnet";
     String TESTNET = "testnet";
 

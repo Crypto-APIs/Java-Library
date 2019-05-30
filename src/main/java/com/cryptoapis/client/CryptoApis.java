@@ -27,6 +27,10 @@ public class CryptoApis implements CryptoApisConstants {
         return new Bitcoin_Cash(setBlockChainConfig(CryptoApisConstants.BITCOIN_CASH, network));
     }
 
+    public Dogecoin connectToDoge(String network) {
+        return new Dogecoin(setBlockChainConfig(CryptoApisConstants.DOGECOIN, network));
+    }
+
     public Exchanges connectToExchanges() {
         return new Exchanges(setConfig());
     }
@@ -39,6 +43,6 @@ public class CryptoApis implements CryptoApisConstants {
     }
 
     private EndpointConfig setConfig() {
-       return new EndpointConfig(CryptoApisConstants.VERSION_V1, this.apiKey);
+        return new EndpointConfig(CryptoApisConstants.VERSION_V1, this.apiKey);
     }
 }
