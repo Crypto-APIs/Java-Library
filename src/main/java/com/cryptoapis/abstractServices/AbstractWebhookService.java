@@ -32,6 +32,12 @@ public abstract class AbstractWebhookService extends AbstractServicesConfig {
         return broadcastWebhook(wh);
     }
 
+    protected ApiResponse createTransactionConfirmationsWh(String webhookUrl, String address, int confirmations) {
+        Webhook wh = Webhook.createAddress(WebhookEnum.TRANSACTION_CONFIRMATIONS.name(), webhookUrl, address, confirmations);
+
+        return broadcastWebhook(wh);
+    }
+
     protected ApiResponse deleteWebhook(String whUuid) {
         return Utils.deleteUnit(whUuid, url, endpointConfig);
     }

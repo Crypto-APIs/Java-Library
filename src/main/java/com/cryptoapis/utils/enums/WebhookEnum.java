@@ -5,5 +5,6 @@ public enum WebhookEnum {
     ADDRESS,
     NEW_BLOCK,
     TOKEN,
-    TXPOOL
+    TXPOOL,
+    TRANSACTION_CONFIRMATIONS
 }

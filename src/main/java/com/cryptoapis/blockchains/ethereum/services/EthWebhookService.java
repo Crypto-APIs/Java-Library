@@ -34,6 +34,11 @@ public class EthWebhookService extends AbstractWebhookService {
         return super.createConfirmedTxWh(webhookUrl, transaction, confirmations);
     }
 
+    @Override
+    public ApiResponse createTransactionConfirmationsWh(String webhookUrl, String address, int confirmations) {
+        return super.createTransactionConfirmationsWh(webhookUrl, address, confirmations);
+    }
+
     public ApiResponse createTokenWh(String webhookUrl, String address, int confirmations) {
         Webhook wh = Webhook.createToken(WebhookEnum.TOKEN.name(), webhookUrl, address, confirmations);
         return super.broadcastWebhook(wh);

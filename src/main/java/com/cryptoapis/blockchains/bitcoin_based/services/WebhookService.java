@@ -32,6 +32,11 @@ public class WebhookService extends AbstractWebhookService {
     }
 
     @Override
+    public ApiResponse createTransactionConfirmationsWh(String webhookUrl, String address, int confirmations) {
+        return super.createTransactionConfirmationsWh(webhookUrl, address, confirmations);
+    }
+
+    @Override
     public ApiResponse deleteWebhook(String webhookId) {
         return super.deleteWebhook(webhookId);
     }
