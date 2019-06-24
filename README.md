@@ -935,20 +935,20 @@ System.out.println(res.getResponse());
 ### Ethereum - Services/Methods
 
 
-|   AddressService   | BlockchainService |  BlockService  | ContractService |  PaymentService  |    TokenService     | TransactionService  |    WebhookService     |               
-| ------------------ | ----------------- | -------------- | --------------- | ---------------- | ------------------- | ------------------- | --------------------- |  
-| getAddressInfo     | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt      | getTokenBalance     | getTx x3            | createNewBlockWh      |
-| generateNewAddress |                   | getLatestBlock | deploySC        | createPFPwd      | transferPvt         | getPendingTxs       | createAddressWh       | 
-| generateAccount    |                   |                |                 | deletePF         | transferPwd         | getQueuedTxs        | createConfirmedTxWh   |
-| getTxsByAddress    |                   |                |                 | listPayments     | getTokensPerAddress | getTxByIdxAndLimit  | createTokenWh         |
-|                    |                   |                |                 | listPastPayments |                     | createTxKeyStore    | createTXPoolWh        |
-|                    |                   |                |                 |                  |                     | createTxKeyStoreAll | deleteWebhook         |
-|                    |                   |                |                 |                  |                     | createTxPvt         | listWebhooks          |
-|                    |                   |                |                 |                  |                     | createTxPvtAll      |                       |
-|                    |                   |                |                 |                  |                     | getRawTxBody        |                       |
-|                    |                   |                |                 |                  |                     | estimateGasLimit    |                       |
-|                    |                   |                |                 |                  |                     | broadcastSignedTx   |                       |
-|                    |                   |                |                 |                  |                     | getGasFees          |                       |
+|   AddressService   | BlockchainService |  BlockService  | ContractService |  PaymentService  |    TokenService      | TransactionService  |    WebhookService     |               
+| ------------------ | ----------------- | -------------- | --------------- | ---------------- | -------------------- | ------------------- | --------------------- |  
+| getAddressInfo     | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt      | getTokenBalance      | getTx x3            | createNewBlockWh      |
+| generateNewAddress |                   | getLatestBlock | deploySC        | createPFPwd      | transferPvt          | getPendingTxs       | createAddressWh       | 
+| generateAccount    |                   |                |                 | deletePF         | transferPwd          | getQueuedTxs        | createConfirmedTxWh   |
+| getTxsByAddress    |                   |                |                 | listPayments     | getTokensByAddress   | getTxByIdxAndLimit  | createTokenWh         |
+| getNonce           |                   |                |                 | listPastPayments | getTokenTxsByAddress | createTxKeyStore    | createTXPoolWh        |
+|                    |                   |                |                 |                  |                      | createTxKeyStoreAll | deleteWebhook         |
+|                    |                   |                |                 |                  |                      | createTxPvt         | listWebhooks          |
+|                    |                   |                |                 |                  |                      | createTxPvtAll      |                       |
+|                    |                   |                |                 |                  |                      | getRawTxBody        |                       |
+|                    |                   |                |                 |                  |                      | estimateGasLimit    |                       |
+|                    |                   |                |                 |                  |                      | broadcastSignedTx   |                       |
+|                    |                   |                |                 |                  |                      | getGasFees          |                       |
     
                                 
 ### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
@@ -968,6 +968,9 @@ System.out.println(res.getResponse());
 |                        |                   |                |                  | newTxWithHDWallet  | removeAddress           |                       |
 |                        |                   |                |                  |                    | deleteWallet            |                       |
 |                        |                   |                |                  |                    | deleteHDWallet          |                       |
+|                        |                   |                |                  |                    | createExtendedKey       |                       |
+|                        |                   |                |                  |                    | getXpubReceiveAddresses |                       |
+|                        |                   |                |                  |                    | getXpubChangeAddresses  |                       |
      
      
 ### Query Params

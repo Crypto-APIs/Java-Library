@@ -1,14 +1,19 @@
 package com.cryptoapis.blockchains.ethereum.services;
 
 import com.cryptoapis.blockchains.ethereum.models.EthTokenTransfer;
+import com.cryptoapis.common_models.ApiError;
+import com.cryptoapis.utils.Utils;
 import com.cryptoapis.utils.enums.KeyType;
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
 import com.cryptoapis.common_models.ApiResponse;
 import com.cryptoapis.utils.config.EndpointConfig;
 import com.cryptoapis.utils.enums.HttpsRequestsEnum;
 import com.cryptoapis.utils.rest.WebServices;
+import javafx.util.Pair;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Map;
 
 public class EthTokenService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/tokens/{3}";
@@ -40,10 +45,21 @@ public class EthTokenService extends AbstractServicesConfig {
         return broadcastTransfer(body);
     }
 
-    public ApiResponse getTokensPerAddress(String address) {
+    public ApiResponse getTokensByAddress(String address) {
         String endpoint = String.format("address/%s", address);
 
        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
+
+    public ApiResponse getTokenTxsByAddress(String address, Map<String, String> params) {
+        String endpoint = String.format("address/%s/transfers", address);
+
+        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        if (pair.getValue() != null) {
+            Utils.setApiResponse(pair.getValue());
+        }
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint.concat(pair.getKey())), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 
     private String createTokenTransaction(String fromAddress, String toAddress, String contract, BigInteger gasPrice, BigInteger gasLimit, BigDecimal token, KeyType keyType, String key) {

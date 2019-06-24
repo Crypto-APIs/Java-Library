@@ -3,6 +3,7 @@ package com.cryptoapis.blockchains.bitcoin_based.services;
 import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.HDWallet;
 import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.Wallet;
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
+import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.XpubAddresses;
 import com.cryptoapis.common_models.ApiResponse;
 import com.cryptoapis.utils.config.EndpointConfig;
 import com.cryptoapis.utils.enums.HttpsRequestsEnum;
@@ -89,6 +90,24 @@ public class WalletService extends AbstractServicesConfig {
     public ApiResponse deleteHDWallet(String hdWallletName) {
         String endpoint = String.format("%s/%s", HD, hdWallletName);
         return deleteWallets(endpoint);
+    }
+
+    public ApiResponse createExtendedKey(String password) {
+        String endpoint = String.format("%s/xpub", HD);
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                XpubAddresses.createExtendedKey(password).toString());
+    }
+
+    public ApiResponse getXpubReceiveAddresses(String xpub, int from, int to) {
+        String endpoint = String.format("%s/xpub/addresses/receive", HD);
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                XpubAddresses.getXpubAddresses(xpub, from, to).toString());
+    }
+
+    public ApiResponse getXpubChangeAddresses(String xpub, int from, int to) {
+        String endpoint = String.format("%s/xpub/addresses/change", HD);
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                XpubAddresses.getXpubAddresses(xpub, from, to).toString());
     }
 
     private ApiResponse getWallet(String walletName, boolean isHD) {

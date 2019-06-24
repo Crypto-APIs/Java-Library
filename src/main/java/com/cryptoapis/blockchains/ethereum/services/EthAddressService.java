@@ -50,4 +50,10 @@ public class EthAddressService extends AbstractServicesConfig {
 
         return WebServices.httpsRequest(WebServices.formatUrl(url.concat(pair.getKey()), endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
+
+    public ApiResponse getNonce(String address) {
+        String endpoint = String.format("%s/%s/nonce", ADDRESS, address);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
 }
