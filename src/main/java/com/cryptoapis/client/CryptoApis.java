@@ -31,6 +31,10 @@ public class CryptoApis implements CryptoApisConstants {
         return new Dogecoin(setBlockChainConfig(CryptoApisConstants.DOGECOIN, network));
     }
 
+    public Dash connectToDash(String network) {
+        return new Dash(setBlockChainConfig(CryptoApisConstants.DASH, network));
+    }
+
     public Exchanges connectToExchanges() {
         return new Exchanges(setConfig());
     }

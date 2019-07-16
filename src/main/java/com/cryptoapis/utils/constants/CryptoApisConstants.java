@@ -8,6 +8,7 @@ public interface CryptoApisConstants {
     String LITECOIN = "ltc";
     String BITCOIN_CASH = "bch";
     String DOGECOIN = "doge";
+    String DASH = "dash";
 
     //networks
     //btc, ltc, bch, doge
