@@ -27,6 +27,18 @@ public class EthTokenService extends AbstractServicesConfig {
         return PATH;
     }
 
+    public ApiResponse getAllTokens(Map<String, String> params) {
+        String endpoint = "all";
+
+        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        if (pair.getValue() != null) {
+            Utils.setApiResponse(pair.getValue());
+        }
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint.concat(pair.getKey())), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+
+    }
+
     public ApiResponse getTokenBalance(String address, String contract) {
         String endpoint = String.format("%s/%s/balance", address, contract);
 

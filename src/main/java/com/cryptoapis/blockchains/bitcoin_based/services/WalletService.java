@@ -1,6 +1,7 @@
 package com.cryptoapis.blockchains.bitcoin_based.services;
 
 import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.HDWallet;
+import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.ImportAddress;
 import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.Wallet;
 import com.cryptoapis.abstractServices.AbstractServicesConfig;
 import com.cryptoapis.blockchains.bitcoin_based.models.Wallet.XpubAddresses;
@@ -25,6 +26,15 @@ public class WalletService extends AbstractServicesConfig {
     @Override
     protected String getPath() {
         return PATH;
+    }
+
+
+    public ApiResponse importAddressAsWallet(String walletName, String privateKey, String password, String address) {
+        String endpoint = String.format("%s/import", HD);
+        ImportAddress importAddress = ImportAddress.importAddressAsWallet(walletName, privateKey, password, address);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                importAddress.toString());
     }
 
     public ApiResponse createWallet(List<String> addresses, String walletName) {

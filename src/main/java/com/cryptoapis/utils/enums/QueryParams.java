@@ -8,5 +8,6 @@ public enum QueryParams {
     timeperiodend,
     timestamp,
     timestart,
-    timeend
+    timeend,
+    type
 }

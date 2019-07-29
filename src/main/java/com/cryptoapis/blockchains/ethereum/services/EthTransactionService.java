@@ -27,6 +27,12 @@ public class EthTransactionService extends AbstractServicesConfig {
         return PATH;
     }
 
+    public ApiResponse getInternalTxs(String hash) {
+        String endpoint = String.format("hash/%s/internal", hash);
+
+        return getApiResponse(endpoint);
+    }
+
     public ApiResponse getTx(String hash) {
         String endpoint = String.format("hash/%s", hash);
 
