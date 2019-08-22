@@ -3,6 +3,27 @@ Java SDK for [CryptoAPIs.io](https://cryptoapis.io/)
 
 You can get API key [here](https://dashboard.cryptoapis.io/register).
 -----
+## Getting started
+
+Add the relevant dependency to your project:
+
+### Maven
+Java 8:
+
+```java
+<dependency>
+    <groupId>io.cryptoapis</groupId>
+    <artifactId>cryptoapis-java-client</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+### Gradle
+Java 8:
+
+```java
+compile("io.cryptoapis:cryptoapis-java-client:1.2.0")
+```
+
 ## How to use
 
 ```java
