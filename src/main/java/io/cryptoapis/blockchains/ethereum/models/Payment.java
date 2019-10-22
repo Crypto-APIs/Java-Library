@@ -3,7 +3,7 @@ package io.cryptoapis.blockchains.ethereum.models;
 import io.cryptoapis.common_models.Stringify;
 import io.cryptoapis.utils.enums.KeyType;
 
-public class EthPayment extends Stringify {
+public class Payment extends Stringify {
     private String from;
     private String to;
     private String callback;
@@ -13,7 +13,7 @@ public class EthPayment extends Stringify {
     private Integer gasLimit;
     private Long gasPrice;
 
-    private EthPayment(String from, String to, String callback, KeyType keyType, String key, Integer confirmations, Long gasPrice, Integer gasLimit) {
+    private Payment(String from, String to, String callback, KeyType keyType, String key, Integer confirmations, Long gasPrice, Integer gasLimit) {
         this.from = from;
         this.to = to;
         this.callback = callback;
@@ -32,9 +32,9 @@ public class EthPayment extends Stringify {
         }
     }
 
-    public static EthPayment createPayment(String from, String to, String callback, KeyType keyType, String key,
-                                           Integer confirmations,  Long gasPrice, Integer gasLimit) {
-        return new EthPayment(from, to, callback, keyType, key, confirmations, gasPrice, gasLimit);
+    public static Payment createPayment(String from, String to, String callback, KeyType keyType, String key,
+                                        Integer confirmations, Long gasPrice, Integer gasLimit) {
+        return new Payment(from, to, callback, keyType, key, confirmations, gasPrice, gasLimit);
     }
 
 }

@@ -1,10 +1,7 @@
 package io.cryptoapis.blockchains.bitcoin_based.services;
 
-import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CompleteTransaction;
-import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateHDWalletTransaction;
-import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.*;
 import io.cryptoapis.blockchains.bitcoin_based.models.Hex;
-import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.SignTransaction;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;
@@ -53,7 +50,6 @@ public class TransactionService extends AbstractServicesConfig {
         return getTransaction(endpoint, pair.getKey());
     }
 
-
     public ApiResponse getUnconfirmedTxs(Map<String, String> params) {
         Pair<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
@@ -101,6 +97,13 @@ public class TransactionService extends AbstractServicesConfig {
 
     public ApiResponse getFees() {
         return getTransaction("fee", null);
+    }
+
+    public ApiResponse refundTx(String txid, String wif, String fee) {
+        String endpoint = "refund";
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                RefundTransaction.refundTx(txid, wif, fee).toString());
     }
 
     private ApiResponse getTransaction(String endpoint, String params) {

@@ -11,6 +11,10 @@ public class CreateTransaction extends Stringify {
     private Integer locktime;
     private Fee fee;
 
+    //btc
+    private Boolean replaceable;
+    private String data;
+
     public static class Inputs extends Base {
 
     }
@@ -19,7 +23,14 @@ public class CreateTransaction extends Stringify {
 
     }
 
-    private CreateTransaction(List<Inputs> inputs, List<Outputs> outputs, Fee fee, Integer locktime) {
+    protected CreateTransaction(List<Inputs> inputs, List<Outputs> outputs, CreateTransaction.Fee fee, Integer locktime, Boolean replaceable, String data) {
+        this(inputs, outputs, fee, locktime);
+        this.replaceable = replaceable;
+        this.data = data;
+    }
+
+
+    protected CreateTransaction(List<Inputs> inputs, List<Outputs> outputs, Fee fee, Integer locktime) {
         this.inputs = inputs;
         this.outputs = outputs;
         this.locktime = locktime;
@@ -33,6 +44,10 @@ public class CreateTransaction extends Stringify {
 
     public static CreateTransaction createTx(List<Inputs> inputs, List<Outputs> outputs, Fee fee, Integer locktime) {
         return new CreateTransaction(inputs, outputs, fee, locktime);
+    }
+
+    public static CreateTransaction btcCreateTransaction(List<Inputs> inputs, List<Outputs> outputs, CreateTransaction.Fee fee, Integer locktime, Boolean replaceable, String data) {
+        return new CreateTransaction(inputs, outputs, fee, locktime, replaceable, data);
     }
 
     public List<Inputs> getInputs() {

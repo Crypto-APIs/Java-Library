@@ -1,12 +1,11 @@
 package io.cryptoapis.utils.rest;
 
-import io.cryptoapis.common_models.ApiResponse;
-import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.common_models.ApiError;
+import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;
 import io.cryptoapis.utils.config.EndpointConfig;
+import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -18,7 +17,6 @@ import java.net.URL;
 import java.text.MessageFormat;
 
 public class WebServices {
-    private static Logger logger = Logger.getLogger(WebServices.class.getName());
 
     public static String formatUrl(String url, EndpointConfig endpointConfig, String endpoint) {
         return MessageFormat.format(url,
@@ -148,7 +146,7 @@ public class WebServices {
                 try {
                     in.close();
                 } catch (IOException e) {
-                    logger.error(e);
+
                 }
             }
 

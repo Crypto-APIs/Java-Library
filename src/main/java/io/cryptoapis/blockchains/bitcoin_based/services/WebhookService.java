@@ -4,6 +4,8 @@ import io.cryptoapis.abstractServices.AbstractWebhookService;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.config.EndpointConfig;
 
+import java.util.Map;
+
 public class WebhookService extends AbstractWebhookService {
     private static final String PATH = "/{0}/bc/{1}/{2}/hooks/{3}";
 
@@ -42,7 +44,12 @@ public class WebhookService extends AbstractWebhookService {
     }
 
     @Override
-    public ApiResponse listWebhooks() {
-        return super.listWebhooks();
+    public ApiResponse deleteAllWebhooks() {
+        return super.deleteAllWebhooks();
+    }
+
+    @Override
+    public ApiResponse listWebhooks(Map<String, String> map) {
+        return super.listWebhooks(map);
     }
 }

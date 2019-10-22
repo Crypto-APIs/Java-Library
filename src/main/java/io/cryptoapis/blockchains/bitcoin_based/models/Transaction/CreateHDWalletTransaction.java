@@ -12,6 +12,18 @@ public class CreateHDWalletTransaction extends Stringify {
     private CreateTransaction.Fee fee;
     private Integer locktime;
 
+    //btc
+    private Boolean replaceable;
+    private String data;
+
+    private CreateHDWalletTransaction(String walletName, String password, List<CreateTransaction.Inputs> inputs,
+                                      List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime,
+                                      Boolean replaceable, String data) {
+        this(walletName, password, inputs, outputs, fee, locktime);
+        this.replaceable = replaceable;
+        this.data = data;
+    }
+
     private CreateHDWalletTransaction(String walletName, String password, List<CreateTransaction.Inputs> inputs,
                                       List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime) {
         this.walletName = walletName;
@@ -20,7 +32,7 @@ public class CreateHDWalletTransaction extends Stringify {
             this.inputs = inputs;
         }
 
-        this.outputs=outputs;
+        this.outputs = outputs;
         this.fee = fee;
         this.locktime = locktime != null ? locktime : 0;
     }
@@ -28,5 +40,11 @@ public class CreateHDWalletTransaction extends Stringify {
     public static CreateHDWalletTransaction create(String walletName, String password, List<CreateTransaction.Inputs> inputs,
                                                    List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime) {
         return new CreateHDWalletTransaction(walletName, password, inputs, outputs, fee, locktime);
+    }
+
+    public static CreateHDWalletTransaction createBtc(String walletName, String password, List<CreateTransaction.Inputs> inputs,
+                                                      List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime,
+                                                      Boolean replaceable, String data) {
+        return new CreateHDWalletTransaction(walletName, password, inputs, outputs, fee, locktime, replaceable, data);
     }
 }

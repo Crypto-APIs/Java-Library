@@ -1,7 +1,7 @@
 package io.cryptoapis.blockchains.ethereum.services;
 
-import io.cryptoapis.blockchains.ethereum.models.EthAccount;
 import io.cryptoapis.abstractServices.AbstractServicesConfig;
+import io.cryptoapis.blockchains.ethereum.models.Account;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;
@@ -10,12 +10,13 @@ import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.rest.WebServices;
 import javafx.util.Pair;
 import org.apache.commons.lang.StringUtils;
+
 import java.util.Map;
 
-public class EthAddressService extends AbstractServicesConfig {
+public class AddressService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/{3}";
 
-    public EthAddressService(EndpointConfig endpointConfig) {
+    public AddressService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -38,7 +39,7 @@ public class EthAddressService extends AbstractServicesConfig {
 
     public ApiResponse generateAccount(String password) {
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "account"), HttpsRequestsEnum.POST.name(), endpointConfig,
-                EthAccount.createAccount(password).toString());
+                Account.createAccount(password).toString());
     }
 
     public ApiResponse getTxsByAddress(String address, Map<String, String> params) {

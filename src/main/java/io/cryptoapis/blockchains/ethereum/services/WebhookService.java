@@ -6,11 +6,13 @@ import io.cryptoapis.common_models.Webhook;
 import io.cryptoapis.utils.config.EndpointConfig;
 import io.cryptoapis.utils.enums.WebhookEnum;
 
+import java.util.Map;
 
-public class EthWebhookService extends AbstractWebhookService {
+
+public class WebhookService extends AbstractWebhookService {
     private static final String PATH = "/{0}/bc/{1}/{2}/hooks/{3}";
 
-    public EthWebhookService(EndpointConfig endpointConfig) {
+    public WebhookService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -55,7 +57,12 @@ public class EthWebhookService extends AbstractWebhookService {
     }
 
     @Override
-    public ApiResponse listWebhooks() {
-        return super.listWebhooks();
+    public ApiResponse deleteAllWebhooks() {
+        return super.deleteAllWebhooks();
+    }
+
+    @Override
+    public ApiResponse listWebhooks(Map<String, String> params) {
+        return super.listWebhooks(params);
     }
 }

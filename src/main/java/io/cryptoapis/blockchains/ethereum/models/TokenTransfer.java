@@ -6,7 +6,7 @@ import io.cryptoapis.utils.enums.KeyType;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class EthTokenTransfer extends Stringify {
+public class TokenTransfer extends Stringify {
     private String fromAddress;
     private String toAddress;
     private String contract;
@@ -16,13 +16,17 @@ public class EthTokenTransfer extends Stringify {
     private BigInteger gasLimit;
     private BigDecimal token;
 
-    private EthTokenTransfer(String fromAddress, String toAddress, String contract, BigInteger gasPrice, BigInteger gasLimit, BigDecimal token, KeyType keyType, String key) {
+    //optional field
+    private Integer nonce;
+
+    private TokenTransfer(String fromAddress, String toAddress, String contract, BigInteger gasPrice, BigInteger gasLimit, BigDecimal token, KeyType keyType, String key, Integer nonce) {
         this.fromAddress = fromAddress;
         this.toAddress = toAddress;
         this.contract = contract;
         this.gasPrice = gasPrice;
         this.gasLimit = gasLimit;
         this.token = token;
+        this.nonce = nonce;
 
         if (keyType == KeyType.PrivateKey) {
             this.privateKey = key;
@@ -31,7 +35,7 @@ public class EthTokenTransfer extends Stringify {
         }
     }
 
-    public static EthTokenTransfer createTokenTransaction(String fromAddress, String toAddress, String contract, BigInteger gasPrice, BigInteger gasLimit, BigDecimal token, KeyType keyType, String key) {
-        return new EthTokenTransfer(fromAddress, toAddress, contract, gasPrice, gasLimit, token, keyType, key);
+    public static TokenTransfer createTokenTransaction(String fromAddress, String toAddress, String contract, BigInteger gasPrice, BigInteger gasLimit, BigDecimal token, KeyType keyType, String key, Integer nonce) {
+        return new TokenTransfer(fromAddress, toAddress, contract, gasPrice, gasLimit, token, keyType, key, nonce);
     }
 }

@@ -1,19 +1,19 @@
 package io.cryptoapis.blockchains.ethereum.services;
 
-import io.cryptoapis.blockchains.ethereum.models.EthContract;
 import io.cryptoapis.abstractServices.AbstractServicesConfig;
+import io.cryptoapis.blockchains.ethereum.models.Contract;
 import io.cryptoapis.common_models.ApiResponse;
-import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.config.EndpointConfig;
+import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.rest.WebServices;
 import org.apache.commons.lang.StringUtils;
 
 import java.math.BigInteger;
 
-public class EthContractService extends AbstractServicesConfig {
+public class ContractService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/contracts/{3}";
 
-    public EthContractService(EndpointConfig endpointConfig) {
+    public ContractService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -27,8 +27,8 @@ public class EthContractService extends AbstractServicesConfig {
     }
 
     public ApiResponse deploySC(String privateKey, String fromAddress, BigInteger gasPrice, BigInteger gasLimit, String byteCode) {
-        EthContract ethContract = EthContract.setData(privateKey, fromAddress, gasPrice, gasLimit, byteCode);
+        Contract contract = Contract.setData(privateKey, fromAddress, gasPrice, gasLimit, byteCode);
 
-        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, StringUtils.EMPTY), HttpsRequestsEnum.POST.name(), endpointConfig, ethContract.toString());
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, StringUtils.EMPTY), HttpsRequestsEnum.POST.name(), endpointConfig, contract.toString());
     }
 }

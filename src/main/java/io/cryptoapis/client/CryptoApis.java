@@ -15,6 +15,10 @@ public class CryptoApis implements CryptoApisConstants {
         return new Ethereum(setBlockChainConfig(CryptoApisConstants.ETHEREUM, network));
     }
 
+    public Ethereum_Classic connectToEtc(String network) {
+        return new Ethereum_Classic(setBlockChainConfig(CryptoApisConstants.ETHEREUM_CLASSIC, network));
+    }
+
     public Bitcoin connectToBtc(String network) {
         return new Bitcoin(setBlockChainConfig(CryptoApisConstants.BITCOIN, network));
     }

@@ -1,13 +1,13 @@
 package io.cryptoapis.utils;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.config.EndpointConfig;
 import io.cryptoapis.utils.enums.HttpsRequestsEnum;
 import io.cryptoapis.utils.enums.QueryParams;
 import io.cryptoapis.utils.rest.WebServices;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.util.Pair;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.http.client.utils.URIBuilder;

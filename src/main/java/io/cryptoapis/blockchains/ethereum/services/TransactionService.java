@@ -1,24 +1,25 @@
 package io.cryptoapis.blockchains.ethereum.services;
 
+import io.cryptoapis.abstractServices.AbstractServicesConfig;
 import io.cryptoapis.blockchains.bitcoin_based.models.Hex;
+import io.cryptoapis.blockchains.ethereum.models.RawTransaction;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
-import io.cryptoapis.utils.enums.HttpsRequestsEnum;
-import io.cryptoapis.blockchains.ethereum.models.EthRawTransaction;
-import io.cryptoapis.utils.enums.KeyType;
-import io.cryptoapis.abstractServices.AbstractServicesConfig;
 import io.cryptoapis.utils.Utils;
 import io.cryptoapis.utils.config.EndpointConfig;
+import io.cryptoapis.utils.enums.HttpsRequestsEnum;
+import io.cryptoapis.utils.enums.KeyType;
 import io.cryptoapis.utils.rest.WebServices;
 import javafx.util.Pair;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Map;
 
-public class EthTransactionService extends AbstractServicesConfig {
+public class TransactionService extends AbstractServicesConfig {
     private static final String PATH = "/{0}/bc/{1}/{2}/txs/{3}";
 
-    public EthTransactionService(EndpointConfig endpointConfig) {
+    public TransactionService(EndpointConfig endpointConfig) {
         super(endpointConfig);
     }
 
@@ -70,20 +71,20 @@ public class EthTransactionService extends AbstractServicesConfig {
         return getApiResponse(endpoint.concat(pair.getKey()));
     }
 
-    public ApiResponse createTxKeyStore(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, String password) {
-        return setRawTransactionBody(from, to, gasPrice, gasLimit, value, data, KeyType.Password, password, "new");
+    public ApiResponse createTxKeyStore(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, String password, BigInteger nonce) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, value, data, KeyType.Password, password, nonce, "new");
     }
 
-    public ApiResponse createTxKeyStoreAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String password) {
-        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.Password, password, "new/all");
+    public ApiResponse createTxKeyStoreAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String password, BigInteger nonce) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.Password, password, nonce, "new/all");
     }
 
-    public ApiResponse createTxPvt(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, String privateKey) {
-        return setRawTransactionBody(from, to, gasPrice, gasLimit, value, data, KeyType.PrivateKey, privateKey, "new-pvtkey");
+    public ApiResponse createTxPvt(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, String privateKey, BigInteger nonce) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, value, data, KeyType.PrivateKey, privateKey, nonce, "new-pvtkey");
     }
 
-    public ApiResponse createTxPvtAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String privateKey) {
-        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.PrivateKey, privateKey, "new-pvtkey/all");
+    public ApiResponse createTxPvtAll(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, String privateKey, BigInteger nonce) {
+        return setRawTransactionBody(from, to, gasPrice, gasLimit, data, KeyType.PrivateKey, privateKey, nonce, "new-pvtkey/all");
     }
 
     public ApiResponse getRawTxBody(String from, String to, BigDecimal value, String data) {
@@ -104,20 +105,20 @@ public class EthTransactionService extends AbstractServicesConfig {
     }
 
     private ApiResponse setRawTransactionBody(String from, String to, BigInteger gasPrice, BigInteger gasLimit, BigDecimal value, String data, KeyType keyType,
-                                              String key, String endpoint) {
-        EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, gasPrice, gasLimit, value, data, keyType, key);
-        return sendTx(endpoint, ethRawTransaction);
+                                              String key, BigInteger nonce, String endpoint) {
+        RawTransaction rawTransaction = RawTransaction.createTransaction(from, to, gasPrice, gasLimit, value, data, keyType, key, nonce);
+        return sendTx(endpoint, rawTransaction);
     }
 
     private ApiResponse setRawTransactionBody(String from, String to, BigDecimal value, String data, String endpoint) {
-        EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, value, data);
-        return sendTx(endpoint, ethRawTransaction);
+        RawTransaction rawTransaction = RawTransaction.createTransaction(from, to, value, data);
+        return sendTx(endpoint, rawTransaction);
     }
 
     private ApiResponse setRawTransactionBody(String from, String to, BigInteger gasPrice, BigInteger gasLimit, String data, KeyType keyType, String key,
-                                              String endpoint) {
-        EthRawTransaction ethRawTransaction = EthRawTransaction.createTransaction(from, to, gasPrice, gasLimit, data, keyType, key);
-        return sendTx(endpoint, ethRawTransaction);
+                                              BigInteger nonce, String endpoint) {
+        RawTransaction rawTransaction = RawTransaction.createTransaction(from, to, gasPrice, gasLimit, data, keyType, key, nonce);
+        return sendTx(endpoint, rawTransaction);
     }
 
 
@@ -126,8 +127,8 @@ public class EthTransactionService extends AbstractServicesConfig {
                 HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 
-    private ApiResponse sendTx(String endpoint, EthRawTransaction ethRawTransaction) {
+    private ApiResponse sendTx(String endpoint, RawTransaction rawTransaction) {
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
-                ethRawTransaction.toString());
+                rawTransaction.toString());
     }
 }
