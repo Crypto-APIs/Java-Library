@@ -18,6 +18,7 @@ public class Bitcoin extends Bitcoin_Based {
 
     @Override
     protected void initServices(EndpointConfig endpointConfig) {
+        super.initServices(endpointConfig);
         try {
             this.btcTransactionService = getConstructor(BtcTransactionService.class).newInstance(endpointConfig);
         } catch (Exception e) {

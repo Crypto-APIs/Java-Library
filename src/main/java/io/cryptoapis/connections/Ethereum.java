@@ -18,6 +18,7 @@ public class Ethereum extends Ethereum_Based {
 
     @Override
     protected void initServices(EndpointConfig endpointConfig) {
+        super.initServices(endpointConfig);
         try {
             this.ethTokenService = getConstructor(EthTokenService.class).newInstance(endpointConfig);
         } catch (Exception e) {
