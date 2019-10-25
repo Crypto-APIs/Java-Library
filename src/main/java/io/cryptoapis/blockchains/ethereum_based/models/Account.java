@@ -1,4 +1,4 @@
-package io.cryptoapis.blockchains.ethereum.models;
+package io.cryptoapis.blockchains.ethereum_based.models;
 
 import io.cryptoapis.common_models.Stringify;
 

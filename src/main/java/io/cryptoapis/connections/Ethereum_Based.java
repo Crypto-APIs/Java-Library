@@ -1,6 +1,6 @@
 package io.cryptoapis.connections;
 
-import io.cryptoapis.blockchains.ethereum.services.*;
+import io.cryptoapis.blockchains.ethereum_based.services.*;
 import io.cryptoapis.utils.config.EndpointConfig;
 
 abstract class Ethereum_Based extends ConnectionConstructor {

@@ -1,7 +1,7 @@
-package io.cryptoapis.blockchains.ethereum.services;
+package io.cryptoapis.blockchains.ethereum_based.services;
 
 import io.cryptoapis.abstractServices.AbstractServicesConfig;
-import io.cryptoapis.blockchains.ethereum.models.Payment;
+import io.cryptoapis.blockchains.ethereum_based.models.Payment;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;
 import io.cryptoapis.utils.config.EndpointConfig;

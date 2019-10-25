@@ -1,7 +1,6 @@
 package io.cryptoapis.connections;
 
-import io.cryptoapis.blockchains.ethereum.services.EthTokenService;
-import io.cryptoapis.blockchains.ethereum.services.TokenService;
+import io.cryptoapis.blockchains.ethereum_based.services.EthTokenService;
 import io.cryptoapis.utils.config.EndpointConfig;
 
 public class Ethereum extends Ethereum_Based {
@@ -18,6 +17,7 @@ public class Ethereum extends Ethereum_Based {
 
     @Override
     protected void initServices(EndpointConfig endpointConfig) {
+        super.initServices(endpointConfig);
         try {
             this.ethTokenService = getConstructor(EthTokenService.class).newInstance(endpointConfig);
         } catch (Exception e) {
