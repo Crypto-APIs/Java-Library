@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class TransactionService extends AbstractServicesConfig {
 
     private static final String PATH = "/{0}/bc/{1}/omni/{2}/txs{3}";
-    private static final String ABSTRACT_ENDPOINT = "/%s/%s?index=%d&limit=%d";
+    private static final String QUERY_PARAMS = "/%s/%s?index=%d&limit=%d";
     private static final String EMPTY_STRING = "";
 
     protected TransactionService(EndpointConfig endpointConfig) {
@@ -74,7 +74,6 @@ public class TransactionService extends AbstractServicesConfig {
     public ApiResponse createHDWalletTransaction(String walletName, String password, String from, String to, BigDecimal value, BigDecimal fee, Integer propertyID) {
         CreateHDWalletTransaction createHDWalletTransaction = CreateHDWalletTransaction.createHDWalletTransaction(walletName, password, from, to, value, fee, propertyID);
 
-        System.out.println(WebServices.formatUrl(url, endpointConfig, "/hdwallet"));
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "/hdwallet"), HttpsRequestsEnum.POST.name(),
                 endpointConfig, createHDWalletTransaction.toString());
     }
@@ -134,7 +133,7 @@ public class TransactionService extends AbstractServicesConfig {
         limit = isValid(limit) ? limit : 50;
         String endpointProperty = property == null ? EMPTY_STRING : String.valueOf(property);
 
-        endpoint = String.format(ABSTRACT_ENDPOINT, endpoint, endpointProperty, index, limit);
+        endpoint = String.format(QUERY_PARAMS, endpoint, endpointProperty, index, limit);
 
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
