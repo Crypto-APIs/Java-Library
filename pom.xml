@@ -4,7 +4,7 @@
     <groupId>io.cryptoapis</groupId>
     <artifactId>cryptoapis-java-client</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.4</version>
+    <version>1.2.5-SNAPSHOT</version>
     <url>http://maven.apache.org</url>
 
     <licenses>
@@ -18,7 +18,7 @@
         <url>https://github.com/Crypto-APIs/Java-Library</url>
         <connection>scm:git:git@github.com:Crypto-APIs/Java-Library.git</connection>
         <developerConnection>scm:git:git@github.com:github.com:Crypto-APIs/Java-Library.git</developerConnection>
-      <tag>cryptoapis-java-client-1.2.4</tag>
+      <tag>HEAD</tag>
   </scm>
     <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-parent -->
     <parent>
