@@ -1,4 +1,4 @@
-package io.cryptoapis.blockchains.ethereum.services;
+package io.cryptoapis.blockchains.ethereum_based.services;
 
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;

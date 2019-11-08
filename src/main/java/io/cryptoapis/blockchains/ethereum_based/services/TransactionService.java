@@ -1,8 +1,8 @@
-package io.cryptoapis.blockchains.ethereum.services;
+package io.cryptoapis.blockchains.ethereum_based.services;
 
 import io.cryptoapis.abstractServices.AbstractServicesConfig;
 import io.cryptoapis.blockchains.bitcoin_based.models.Hex;
-import io.cryptoapis.blockchains.ethereum.models.RawTransaction;
+import io.cryptoapis.blockchains.ethereum_based.models.RawTransaction;
 import io.cryptoapis.common_models.ApiError;
 import io.cryptoapis.common_models.ApiResponse;
 import io.cryptoapis.utils.Utils;

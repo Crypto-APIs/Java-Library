@@ -1,7 +1,6 @@
 package io.cryptoapis.connections;
 
-import io.cryptoapis.blockchains.ethereum.services.EthTokenService;
-import io.cryptoapis.blockchains.ethereum.services.TokenService;
+import io.cryptoapis.blockchains.ethereum_based.services.EthTokenService;
 import io.cryptoapis.utils.config.EndpointConfig;
 
 public class Ethereum extends Ethereum_Based {
