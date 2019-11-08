@@ -14,14 +14,14 @@ Java 8:
 <dependency>
     <groupId>io.cryptoapis</groupId>
     <artifactId>cryptoapis-java-client</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.4</version>
 </dependency>
 ```
 ### Gradle
 Java 8:
 
 ```java
-compile("io.cryptoapis:cryptoapis-java-client:1.2.0")
+compile("io.cryptoapis:cryptoapis-java-client:1.2.4")
 ```
 
 ## How to use
