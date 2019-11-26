@@ -46,11 +46,15 @@ public abstract class AbstractWebhookService extends AbstractServicesConfig {
     }
 
     protected ApiResponse deleteWebhook(String whUuid) {
-        return Utils.deleteUnit(whUuid, url, endpointConfig);
+        String endpoint = String.format("/%s", whUuid);
+
+        return Utils.deleteUnit(endpoint, url, endpointConfig);
     }
 
     protected ApiResponse deleteAllWebhooks() {
-        return Utils.deleteUnit(DELETE_ALL_URL, url, endpointConfig);
+        String endpoint = String.format("/%s", DELETE_ALL_URL);
+
+        return Utils.deleteUnit(endpoint, url, endpointConfig);
     }
 
     protected ApiResponse listWebhooks(Map<String, String> params) {

@@ -10,7 +10,7 @@ import io.cryptoapis.utils.rest.WebServices;
 import org.apache.commons.lang.StringUtils;
 
 public class PaymentService extends AbstractServicesConfig {
-    private static final String PATH = "/{0}/bc/{1}/{2}/payments/{3}";
+    private static final String PATH = "/{0}/bc/{1}/{2}/payments{3}";
 
     protected PaymentService(EndpointConfig endpointConfig) {
         super(endpointConfig);
@@ -28,7 +28,9 @@ public class PaymentService extends AbstractServicesConfig {
     }
 
     public ApiResponse deletePF(String paymentID) {
-        return Utils.deleteUnit(paymentID, url, endpointConfig);
+        String endpoint = String.format("/%s" , paymentID);
+
+        return Utils.deleteUnit(endpoint, url, endpointConfig);
     }
 
     public ApiResponse listPayments() {
@@ -36,7 +38,7 @@ public class PaymentService extends AbstractServicesConfig {
     }
 
     public ApiResponse listPastPayments() {
-        return getPayments("history");
+        return getPayments("/history");
     }
 
     private Payment createPF(String from, String to, String callback, String walletName, String password, Integer confirmations, Double fee) {

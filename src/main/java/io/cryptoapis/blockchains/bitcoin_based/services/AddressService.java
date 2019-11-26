@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import java.util.Map;
 
 public class AddressService extends AbstractServicesConfig {
-    private static final String PATH = "/{0}/bc/{1}/{2}/address/{3}";
+    private static final String PATH = "/{0}/bc/{1}/{2}/address{3}";
 
     public AddressService(EndpointConfig endpointConfig) {
         super(endpointConfig);
@@ -24,11 +24,12 @@ public class AddressService extends AbstractServicesConfig {
     }
 
     public ApiResponse getAddressInfo(String address) {
-        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, address), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+        String endpoint = String.format("/%s" , address);
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 
     public ApiResponse getMultisigAddressInfo(String address, Map<String, String> params) {
-        String endpoint = String.format("%s/multisig", address);
+        String endpoint = String.format("/%s/multisig", address);
 
         Pair<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
@@ -43,7 +44,7 @@ public class AddressService extends AbstractServicesConfig {
     }
 
     public ApiResponse getTxsByAddress(String address, Map<String, String> params) {
-        String endpoint = String.format("%s/transactions", address);
+        String endpoint = String.format("/%s/transactions", address);
 
         Pair<String, ApiError> pair = Utils.setQueryParams(params);
         if (pair.getValue() != null) {
