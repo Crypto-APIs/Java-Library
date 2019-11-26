@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 public class WebhookService extends AbstractWebhookService {
-    private static final String PATH = "/{0}/bc/{1}/{2}/hooks/{3}";
+    private static final String PATH = "/{0}/bc/{1}/{2}/hooks{3}";
 
     public WebhookService(EndpointConfig endpointConfig) {
         super(endpointConfig);
