@@ -4,7 +4,7 @@
     <groupId>io.cryptoapis</groupId>
     <artifactId>cryptoapis-java-client</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.5-SNAPSHOT</version>
+    <version>1.2.3</version>
     <url>http://maven.apache.org</url>
 
     <licenses>
