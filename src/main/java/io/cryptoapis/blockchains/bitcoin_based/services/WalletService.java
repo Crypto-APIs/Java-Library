@@ -15,7 +15,7 @@ import java.util.List;
 
 public class WalletService extends AbstractServicesConfig {
 
-    private static final String PATH = "/{0}/bc/{1}/{2}/wallets/{3}";
+    private static final String PATH = "/{0}/bc/{1}/{2}/wallets{3}";
 
     public WalletService(EndpointConfig endpointConfig) {
         super(endpointConfig);
@@ -30,7 +30,7 @@ public class WalletService extends AbstractServicesConfig {
 
 
     public ApiResponse importAddressAsWallet(String walletName, String privateKey, String password, String address) {
-        String endpoint = String.format("%s/import", HD);
+        String endpoint = String.format("/%s/import", HD);
         ImportAddress importAddress = ImportAddress.importAddressAsWallet(walletName, privateKey, password, address);
 
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
@@ -46,8 +46,9 @@ public class WalletService extends AbstractServicesConfig {
 
     public ApiResponse createHDWallet(String walletName, int addressCount, String password) {
         HDWallet hdWallet = HDWallet.createHDWallet(walletName, addressCount, password);
+        String endpoint = String.format("/%s", HD);
 
-        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, HD), HttpsRequestsEnum.POST.name(), endpointConfig,
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 hdWallet.toString());
     }
 
@@ -57,7 +58,9 @@ public class WalletService extends AbstractServicesConfig {
     }
 
     public ApiResponse listHDWallets() {
-        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, HD), HttpsRequestsEnum.GET.name(), endpointConfig,
+        String endpoint = String.format("/%s", HD);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig,
                 null);
     }
 
@@ -72,7 +75,7 @@ public class WalletService extends AbstractServicesConfig {
     public ApiResponse addAddressToWallet(List<String> addresses, String walletName) {
         Wallet wallet = Wallet.createWallet(addresses, walletName);
 
-        String endpoint = String.format("%s/addresses", walletName);
+        String endpoint = String.format("/%s/addresses", walletName);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 wallet.toString());
     }
@@ -88,7 +91,7 @@ public class WalletService extends AbstractServicesConfig {
     }
 
     public ApiResponse removeAddress(String walletName, String address) {
-        String endpoint = String.format("%s/address/%s", walletName, address);
+        String endpoint = String.format("/%s/address/%s", walletName, address);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.DELETE.name(), endpointConfig,
                 null);
     }
@@ -98,30 +101,30 @@ public class WalletService extends AbstractServicesConfig {
     }
 
     public ApiResponse deleteHDWallet(String hdWallletName) {
-        String endpoint = String.format("%s/%s", HD, hdWallletName);
+        String endpoint = String.format("/%s/%s", HD, hdWallletName);
         return deleteWallets(endpoint);
     }
 
     public ApiResponse createExtendedKey(String password) {
-        String endpoint = String.format("%s/xpub", HD);
+        String endpoint = String.format("/%s/xpub", HD);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 XpubAddresses.createExtendedKey(password).toString());
     }
 
     public ApiResponse getXpubReceiveAddresses(String xpub, int from, int to) {
-        String endpoint = String.format("%s/xpub/addresses/receive", HD);
+        String endpoint = String.format("/%s/xpub/addresses/receive", HD);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 XpubAddresses.getXpubAddresses(xpub, from, to).toString());
     }
 
     public ApiResponse getXpubChangeAddresses(String xpub, int from, int to) {
-        String endpoint = String.format("%s/xpub/addresses/change", HD);
+        String endpoint = String.format("/%s/xpub/addresses/change", HD);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 XpubAddresses.getXpubAddresses(xpub, from, to).toString());
     }
 
     private ApiResponse getWallet(String walletName, boolean isHD) {
-        String endpoint = isHD ? String.format("%s/%s", HD, walletName) : String.format("%s", walletName);
+        String endpoint = isHD ? String.format("/%s/%s", HD, walletName) : String.format("/%s", walletName);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig,
                 null);
     }
@@ -129,13 +132,15 @@ public class WalletService extends AbstractServicesConfig {
     private ApiResponse generateAddress(String walletName, boolean isHD, String body) {
         final String generateEndpoint = "addresses/generate";
 
-        String endpoint = isHD ? String.format("%s/%s/%s", HD, walletName, generateEndpoint) : String.format("%s/%s", walletName, generateEndpoint);
+        String endpoint = isHD ? String.format("/%s/%s/%s", HD, walletName, generateEndpoint) : String.format("/%s/%s", walletName, generateEndpoint);
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
                 body);
     }
 
     private ApiResponse deleteWallets(String path) {
-        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, path), HttpsRequestsEnum.DELETE.name(), endpointConfig,
+        String endpoint = String.format("/%s", path);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.DELETE.name(), endpointConfig,
                 null);
     }
 }

@@ -946,30 +946,30 @@ System.out.println(res.getResponse());
 ### Exchanges - Services/Methods
 
 
-| ExchangeRatesService | MetadataService  |   OHLCVService    |   QuotesService   |     TradesService     |             
-| -------------------- | ---------------- | ----------------- | ----------------- | --------------------- |  
-| getSpecificRate      | getExchangesList | getPeriodsList    | getLatestData     | getLatestData         |
-| getCurrentRate       | getAssetsList    | getLatestData     | getHistoricalData | getHistoricalData     | 
-|                      | getSymbolsList   | getHistoricalData |                   | getLatestDataBySymbol |
+| ExchangeRatesService | MetadataService  |   OHLCVService    |   QuotesService   |     TradesService     |   OrderBookService    |            
+| -------------------- | ---------------- | ----------------- | ----------------- | --------------------- | --------------------- |
+| getSpecificRate      | getExchangesList | getPeriodsList    | getLatestData     | getLatestData         | getSnapshotBySymbolId |
+| getCurrentRate       | getAssetsList    | getLatestData     | getHistoricalData | getHistoricalData     |                       |
+|                      | getSymbolsList   | getHistoricalData |                   | getLatestDataBySymbol |                       |
 
 
-### Ethereum - Services/Methods
+### Ethereum, Ethereum Classic - Services/Methods
 
 
-|   AddressService   | BlockchainService |  BlockService  | ContractService |  PaymentService  |    TokenService      | TransactionService  |    WebhookService     |               
-| ------------------ | ----------------- | -------------- | --------------- | ---------------- | -------------------- | ------------------- | --------------------- |  
-| getAddressInfo     | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt      | getTokenBalance      | getTx x3            | createNewBlockWh      |
-| generateNewAddress |                   | getLatestBlock | deploySC        | createPFPwd      | transferPvt          | getPendingTxs       | createAddressWh       | 
-| generateAccount    |                   |                |                 | deletePF         | transferPwd          | getQueuedTxs        | createConfirmedTxWh   |
-| getTxsByAddress    |                   |                |                 | listPayments     | getTokensByAddress   | getTxByIdxAndLimit  | createTokenWh         |
-| getNonce           |                   |                |                 | listPastPayments | getTokenTxsByAddress | createTxKeyStore    | createTXPoolWh        |
-|                    |                   |                |                 |                  |                      | createTxKeyStoreAll | deleteWebhook         |
-|                    |                   |                |                 |                  |                      | createTxPvt         | listWebhooks          |
-|                    |                   |                |                 |                  |                      | createTxPvtAll      |                       |
-|                    |                   |                |                 |                  |                      | getRawTxBody        |                       |
-|                    |                   |                |                 |                  |                      | estimateGasLimit    |                       |
-|                    |                   |                |                 |                  |                      | broadcastSignedTx   |                       |
-|                    |                   |                |                 |                  |                      | getGasFees          |                       |
+|   AddressService   | BlockchainService |  BlockService  | ContractService |  PaymentService  |       TokenService              | TransactionService  |    WebhookService     |               
+| ------------------ | ----------------- | -------------- | --------------- | ---------------- | ------------------------------- | ------------------- | --------------------- |  
+| getAddressInfo     | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt      | getTokenBalance                 | getTx x3            | createNewBlockWh      |
+| generateNewAddress |                   | getLatestBlock | deploySC        | createPFPwd      | transferPvt                     | getPendingTxs       | createAddressWh       | 
+| generateAccount    |                   |                |                 | deletePF         | transferPwd                     | getQueuedTxs        | createConfirmedTxWh   |
+| getTxsByAddress    |                   |                |                 | listPayments     | getTokensByAddress (Ethereum)   | getTxByIdxAndLimit  | createTokenWh         |
+| getNonce           |                   |                |                 | listPastPayments | getTokenTxsByAddress (Ethereum) | createTxKeyStore    | createTXPoolWh        |
+|                    |                   |                |                 |                  | getTotalSupplyAndDecimals       | createTxKeyStoreAll | deleteWebhook         |
+|                    |                   |                |                 |                  | getAllTokens (Ethereum)         | createTxPvt         | listWebhooks          |
+|                    |                   |                |                 |                  |                                 | createTxPvtAll      |                       |
+|                    |                   |                |                 |                  |                                 | getRawTxBody        |                       |
+|                    |                   |                |                 |                  |                                 | estimateGasLimit    |                       |
+|                    |                   |                |                 |                  |                                 | broadcastSignedTx   |                       |
+|                    |                   |                |                 |                  |                                 | getGasFees          |                       |
     
                                 
 ### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
@@ -982,17 +982,32 @@ System.out.println(res.getResponse());
 | generateNewAddress     |                   |                | listPayments     | getUnconfirmedTxs  | listWallets             | createConfirmedTxWh   |
 | getTxsByAddress        |                   |                | listPastPayments | decodeTx           | listHDWallets           | deleteWebhook         |
 |                        |                   |                |                  | createTx           | getWallet               | listWebhooks          |
-|                        |                   |                |                  | signTx             | getHDWallet             |                       |
+|                        |                   |                |                  | signTx             | getHDWallet             | deleteAllWebhooks     |
 |                        |                   |                |                  | sendTx             | addAddressToWallet      |                       |
 |                        |                   |                |                  | newTx              | generateAddressWallet   |                       |
 |                        |                   |                |                  | getFees            | generateAddressHDWallet |                       |
 |                        |                   |                |                  | newTxWithHDWallet  | removeAddress           |                       |
-|                        |                   |                |                  |                    | deleteWallet            |                       |
+|                        |                   |                |                  | refundTx           | deleteWallet            |                       |
 |                        |                   |                |                  |                    | deleteHDWallet          |                       |
 |                        |                   |                |                  |                    | createExtendedKey       |                       |
 |                        |                   |                |                  |                    | getXpubReceiveAddresses |                       |
 |                        |                   |                |                  |                    | getXpubChangeAddresses  |                       |
-     
+
+### Bitcoin / Omni Layer
+
+
+|     AddressService     |  NodeInfoService  |       TransactionService        |               
+| ---------------------- | ----------------- | --------------                  | 
+| getAddress             | getNodeInfo       | createTransaction x2            | 
+| getAddressTransactions |                   | signTransaction                 |
+|                        |                   | sendTransaction                 |
+|                        |                   | createSignAndSendTransaction x2 | 
+|                        |                   | createHDWalletTransaction x2    |                  
+|                        |                   | getTransactionById              |                  
+|                        |                   | getTransactionsByBlockHeight x2 |                  
+|                        |                   | getTransactionsByPropertyId x2  |                  
+|                        |                   | getUnconfirmedTransactions  x2  |                  
+|                        |                   |                                 |
      
 ### Query Params
 

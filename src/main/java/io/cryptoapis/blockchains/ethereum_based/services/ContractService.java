@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import java.math.BigInteger;
 
 public class ContractService extends AbstractServicesConfig {
-    private static final String PATH = "/{0}/bc/{1}/{2}/contracts/{3}";
+    private static final String PATH = "/{0}/bc/{1}/{2}/contracts{3}";
 
     public ContractService(EndpointConfig endpointConfig) {
         super(endpointConfig);
@@ -23,7 +23,7 @@ public class ContractService extends AbstractServicesConfig {
     }
 
     public ApiResponse estimateGasSC() {
-      return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "gas"), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+      return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "/gas"), HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
 
     public ApiResponse deploySC(String privateKey, String fromAddress, BigInteger gasPrice, BigInteger gasLimit, String byteCode) {
