@@ -48,7 +48,7 @@ final Dogecoin doge = caClient.connectToDoge(CryptoApisConstants.MAINNET);
 ### Generate new address
 
 ```java
-final EthAddressService ethAddressService = eth.getEthAddressService();
+final AddressService ethAddressService = eth.getAddressService();
 
 ApiResponse res = ethAddressService.generateNewAddress();
 System.out.println(res.getResponse());
@@ -123,7 +123,7 @@ System.out.println(res.getResponse());
 ### Get block info by number
 
 ```java
-final EthBlockService ethBlockService = eth.getEthBlockService();
+final BlockService ethBlockService = eth.getBlockService();
 ApiResponse res = ethBlockService.getBlock(6123321);
 System.out.println(res.getResponse());
 ```
@@ -157,7 +157,7 @@ System.out.println(res.getResponse());
 ### Get an existing transaction by a given hash:
 
 ```java
-final EthTransactionService ethTransactionService = eth.getEthTransactionService();
+final TransactionService ethTransactionService = eth.getTransactionService();
 ApiResponse res = ethTransactionService.getTx("0xe7abcffe85acf8e6d3186f1378d201b0857c41d300885c9c3c2f2c72afaecbcd");
 System.out.println(res.getResponse());
 ```
@@ -216,7 +216,7 @@ If transaction is not found, the following message will be printed:
 ### Create payment forwarding using an account
 
 ```java
-final EthPaymentService ethPaymentService = eth.getEthPaymentService();
+final PaymentService ethPaymentService = eth.getPaymentService();
 ApiResponse res = ethPaymentService.createPFPwd("0x7857af2143cb06ddc1dab5d7844c9402e89717cb", "0x4ab47e7b0204d6b3bf0e956db14e63142b9b5ab8", 
             "https://somepoint.com", "your-password-123", 6, 11000000000L, 21000);
 System.out.println(res.getResponse());
@@ -257,7 +257,7 @@ If password is misspelled the following will be printed:
 ### Create, sign and send a transaction to the blockchain 
 
 ```java
-final EthTransactionService ethTransactionService = eth.getEthTransactionService();
+final TransactionService ethTransactionService = eth.getTransactionService();
 final String from = "0xc438d912235ff5facc22c502e5bd6dc1ae14a7ff";
 final String to = "0x0cb1883c01377f45ee5d7448a32b5ac1709afc11";
 final BigInteger gasPrice = BigInteger.valueOf(8000000000L);
