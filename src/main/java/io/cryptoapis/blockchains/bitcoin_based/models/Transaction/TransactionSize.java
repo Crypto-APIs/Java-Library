@@ -55,7 +55,7 @@ public class TransactionSize extends Stringify {
         return new TransactionSize(inputs, outputs, fee, locktime);
     }
 
-    public static TransactionSize btcTransactionSize(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, TransactionSize.Fee fee, Integer locktime, Boolean replaceable, String data) {
+    public static TransactionSize btcTransactionSizeWithFee(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, TransactionSize.Fee fee, Integer locktime, Boolean replaceable, String data) {
         return new TransactionSize(inputs, outputs, fee, locktime, replaceable, data);
     }
 

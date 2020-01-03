@@ -29,8 +29,8 @@ public class BtcTransactionService extends TransactionService {
                 CreateHDWalletTransaction.createBtc(walletName, password, inputs, outputs, fee, locktime, replaceable, data).toString());
     }
 
-    public ApiResponse btcTransactionSize(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, TransactionSize.Fee fee, Integer locktime, Boolean replaceable, String data) {
-        TransactionSize transactionSize = TransactionSize.btcTransactionSize(inputs, outputs, fee, locktime, replaceable, data);
+    public ApiResponse btcTransactionSizeWithFee(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, TransactionSize.Fee fee, Integer locktime, Boolean replaceable, String data) {
+        TransactionSize transactionSize = TransactionSize.btcTransactionSizeWithFee(inputs, outputs, fee, locktime, replaceable, data);
 
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "size"), HttpsRequestsEnum.POST.name(),
                 endpointConfig, transactionSize.toString());
