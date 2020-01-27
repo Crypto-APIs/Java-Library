@@ -975,23 +975,23 @@ System.out.println(res.getResponse());
 ### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
 
 
-|     AddressService     | BlockchainService |  BlockService  |  PaymentService  | TransactionService |       WalletService     |    WebhookService     |               
-| ---------------------- | ----------------- | -------------- | ---------------- | ------------------ | ----------------------- | --------------------- |  
-| getAddressInfo         | getBlockchainInfo | getBlock x2    | createPFPwd      | getTxByHash        | createWallet            | createNewBlockWh      |
-| getMultisigAddressInfo |                   | getLatestBlock | deletePF         | getTxByBlock x2    | createHDWallet          | createAddressWh       | 
-| generateNewAddress     |                   |                | listPayments     | getUnconfirmedTxs  | listWallets             | createConfirmedTxWh   |
-| getTxsByAddress        |                   |                | listPastPayments | decodeTx           | listHDWallets           | deleteWebhook         |
-|                        |                   |                |                  | createTx           | getWallet               | listWebhooks          |
-|                        |                   |                |                  | signTx             | getHDWallet             | deleteAllWebhooks     |
-|                        |                   |                |                  | sendTx             | addAddressToWallet      |                       |
-|                        |                   |                |                  | newTx              | generateAddressWallet   |                       |
-|                        |                   |                |                  | getFees            | generateAddressHDWallet |                       |
-|                        |                   |                |                  | newTxWithHDWallet  | removeAddress           |                       |
-|                        |                   |                |                  | refundTx           | deleteWallet            |                       |
-|                        |                   |                |                  |                    | deleteHDWallet          |                       |
-|                        |                   |                |                  |                    | createExtendedKey       |                       |
-|                        |                   |                |                  |                    | getXpubReceiveAddresses |                       |
-|                        |                   |                |                  |                    | getXpubChangeAddresses  |                       |
+|     AddressService     | BlockchainService |  BlockService  |  PaymentService  | TransactionService     |       WalletService     |    WebhookService     |               
+| ---------------------- | ----------------- | -------------- | ---------------- | ------------------     | ----------------------- | --------------------- |  
+| getAddressInfo         | getBlockchainInfo | getBlock x2    | createPFPwd      | getTxByHash            | createWallet            | createNewBlockWh      |
+| getMultisigAddressInfo |                   | getLatestBlock | deletePF         | getTxByBlock x2        | createHDWallet          | createAddressWh       | 
+| generateNewAddress     |                   |                | listPayments     | getUnconfirmedTxs      | listWallets             | createConfirmedTxWh   |
+| getTxsByAddress        |                   |                | listPastPayments | decodeTx               | listHDWallets           | deleteWebhook         |
+|                        |                   |                |                  | createTx               | getWallet               | listWebhooks          |
+|                        |                   |                |                  | signTx                 | getHDWallet             | deleteAllWebhooks     |
+|                        |                   |                |                  | sendTx                 | addAddressToWallet      |                       |
+|                        |                   |                |                  | newTx                  | generateAddressWallet   |                       |
+|                        |                   |                |                  | getFees                | generateAddressHDWallet |                       |
+|                        |                   |                |                  | newTxWithHDWallet      | removeAddress           |                       |
+|                        |                   |                |                  | refundTx               | deleteWallet            |                       |
+|                        |                   |                |                  | transactionSize        | deleteHDWallet          |                       |
+|                        |                   |                |                  | transactionSizeWithFee | createExtendedKey       |                       |
+|                        |                   |                |                  |                        | getXpubReceiveAddresses |                       |
+|                        |                   |                |                  |                        | getXpubChangeAddresses  |                       |
 
 ### Bitcoin / Omni Layer
 

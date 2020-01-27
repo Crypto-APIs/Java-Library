@@ -95,6 +95,20 @@ public class TransactionService extends AbstractServicesConfig {
                 CreateHDWalletTransaction.create(walletName, password, inputs, outputs, fee, locktime).toString());
     }
 
+    public ApiResponse transactionSizeWithFee(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, TransactionSize.Fee fee, Integer locktime) {
+        TransactionSize transactionSize = TransactionSize.transactionSizeWithFee(inputs, outputs, fee, locktime);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "size"), HttpsRequestsEnum.POST.name(), endpointConfig,
+                transactionSize.toString());
+    }
+
+    public ApiResponse transactionSize(List<TransactionSize.Inputs> inputs, List<TransactionSize.Outputs> outputs, Integer locktime) {
+        TransactionSize transactionSize = TransactionSize.transactionSize(inputs, outputs, locktime);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, "size"), HttpsRequestsEnum.POST.name(), endpointConfig,
+                transactionSize.toString());
+    }
+
     public ApiResponse getFees() {
         return getTransaction("fee", null);
     }
