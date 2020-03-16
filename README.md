@@ -1008,6 +1008,16 @@ System.out.println(res.getResponse());
 |                        |                   | getTransactionsByPropertyId x2  |                  
 |                        |                   | getUnconfirmedTransactions  x2  |                  
 |                        |                   |                                 |
+
+### Zilliqa
+
+|     AddressService     | BlockchainService    | TransactionService  |  BlockService  |               
+| ---------------------- | -------------------- | ------------------  | -------------- |
+| getAddressInfo         | getBlockchainInfo    | getTx x3            | getBlock x2    |
+| getTxsByAddress        |                      | signTransaction     | getLatestBlock |
+| generateNewAddress     |                      | getTxByIdxAndLimit  |                |
+|                        |                      |                     |                |
+
      
 ### Query Params
 

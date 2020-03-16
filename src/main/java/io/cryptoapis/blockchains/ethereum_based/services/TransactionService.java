@@ -40,6 +40,12 @@ public class TransactionService extends AbstractServicesConfig {
         return getApiResponse(endpoint);
     }
 
+    public ApiResponse getBasicTx(String hash) {
+        String endpoint = String.format("basic/hash/%s", hash);
+
+        return getApiResponse(endpoint);
+    }
+
     public ApiResponse getTx(int blockNumber, int index) {
         String endpoint = String.format("block/%s/%s", blockNumber, index);
 

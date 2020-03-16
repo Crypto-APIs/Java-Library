@@ -39,6 +39,10 @@ public class CryptoApis implements CryptoApisConstants {
         return new Dash(setBlockChainConfig(CryptoApisConstants.DASH, network));
     }
 
+    public Zilliqa connectToZilliqa(String network) {
+        return new Zilliqa(setBlockChainConfig(CryptoApisConstants.ZIL, network));
+    }
+
     public Exchanges connectToExchanges() {
         return new Exchanges(setConfig());
     }

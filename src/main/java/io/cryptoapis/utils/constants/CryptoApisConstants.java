@@ -10,9 +10,10 @@ public interface CryptoApisConstants {
     String DOGECOIN = "doge";
     String DASH = "dash";
     String ETHEREUM_CLASSIC = "etc";
+    String ZIL = "zil";
 
     //networks
-    //btc, ltc, bch, doge
+    //btc, ltc, bch, doge, zil
     String MAINNET = "mainnet";
     String TESTNET = "testnet";
 
@@ -20,7 +21,8 @@ public interface CryptoApisConstants {
     String ETHEREUM_MAINNET = "mainnet";
     String ETHEREUM_ROPSTEN = "ropsten";
     String ETHEREUM_RINKEBY = "rinkeby";
-    String ETHEREUM_CLASSIC_MORDEN = "morden";
+    String ETHEREUM_CLASSIC_MORDOR = "mordor";
+    String ETHEREUM_CLASSIC_KOTTI = "kotti";
 
     String CRYPTOAPIS_ENDPOINT = "https://api.cryptoapis.io";
     String LATEST = "latest";

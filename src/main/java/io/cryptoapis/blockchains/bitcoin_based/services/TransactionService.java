@@ -30,6 +30,18 @@ public class TransactionService extends AbstractServicesConfig {
         return getTransaction(endpoint, null);
     }
 
+    public ApiResponse getRawTxByHash(String hash) {
+        String endpoint = String.format("raw/txid/%s", hash);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
+
+    public ApiResponse getBasicTxByHash(String hash) {
+        String endpoint = String.format("basic/txid/%s", hash);
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
+
     public ApiResponse getTxByBlock(String blockHash, Map<String, String> params) {
         String endpoint = String.format("block/%s", blockHash);
 
