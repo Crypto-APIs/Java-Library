@@ -970,6 +970,7 @@ System.out.println(res.getResponse());
 |                    |                   |                |                 |                  |                                 | estimateGasLimit    |                       |
 |                    |                   |                |                 |                  |                                 | broadcastSignedTx   |                       |
 |                    |                   |                |                 |                  |                                 | getGasFees          |                       |
+|                    |                   |                |                 |                  |                                 | getBasicTx          |                       |
     
                                 
 ### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
@@ -990,8 +991,8 @@ System.out.println(res.getResponse());
 |                        |                   |                |                  | refundTx               | deleteWallet            |                       |
 |                        |                   |                |                  | transactionSize        | deleteHDWallet          |                       |
 |                        |                   |                |                  | transactionSizeWithFee | createExtendedKey       |                       |
-|                        |                   |                |                  |                        | getXpubReceiveAddresses |                       |
-|                        |                   |                |                  |                        | getXpubChangeAddresses  |                       |
+|                        |                   |                |                  | getBasicTxByHash       | getXpubReceiveAddresses |                       |
+|                        |                   |                |                  | getRawTxByHash         | getXpubChangeAddresses  |                       |
 
 ### Bitcoin / Omni Layer
 
