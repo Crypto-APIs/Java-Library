@@ -14,14 +14,14 @@ Java 8:
 <dependency>
     <groupId>io.cryptoapis</groupId>
     <artifactId>cryptoapis-java-client</artifactId>
-    <version>1.2.5</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 ### Gradle
 Java 8:
 
 ```java
-compile("io.cryptoapis:cryptoapis-java-client:1.2.5")
+compile("io.cryptoapis:cryptoapis-java-client:1.3.0")
 ```
 
 ## How to use
@@ -970,6 +970,7 @@ System.out.println(res.getResponse());
 |                    |                   |                |                 |                  |                                 | estimateGasLimit    |                       |
 |                    |                   |                |                 |                  |                                 | broadcastSignedTx   |                       |
 |                    |                   |                |                 |                  |                                 | getGasFees          |                       |
+|                    |                   |                |                 |                  |                                 | getBasicTx          |                       |
     
                                 
 ### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
@@ -990,8 +991,8 @@ System.out.println(res.getResponse());
 |                        |                   |                |                  | refundTx               | deleteWallet            |                       |
 |                        |                   |                |                  | transactionSize        | deleteHDWallet          |                       |
 |                        |                   |                |                  | transactionSizeWithFee | createExtendedKey       |                       |
-|                        |                   |                |                  |                        | getXpubReceiveAddresses |                       |
-|                        |                   |                |                  |                        | getXpubChangeAddresses  |                       |
+|                        |                   |                |                  | getBasicTxByHash       | getXpubReceiveAddresses |                       |
+|                        |                   |                |                  | getRawTxByHash         | getXpubChangeAddresses  |                       |
 
 ### Bitcoin / Omni Layer
 
@@ -1008,6 +1009,16 @@ System.out.println(res.getResponse());
 |                        |                   | getTransactionsByPropertyId x2  |                  
 |                        |                   | getUnconfirmedTransactions  x2  |                  
 |                        |                   |                                 |
+
+### Zilliqa
+
+|     AddressService     | BlockchainService    | TransactionService  |  BlockService  |               
+| ---------------------- | -------------------- | ------------------  | -------------- |
+| getAddressInfo         | getBlockchainInfo    | getTx x3            | getBlock x2    |
+| getTxsByAddress        |                      | getTxByIdxAndLimit  | getLatestBlock |
+| generateNewAddress     |                      |                     |                |
+|                        |                      |                     |                |
+
      
 ### Query Params
 

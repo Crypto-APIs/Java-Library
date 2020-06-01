@@ -54,4 +54,28 @@ public class AddressService extends AbstractServicesConfig {
         return WebServices.httpsRequest(WebServices.formatUrl(url.concat(pair.getKey()), endpointConfig, endpoint),
                 HttpsRequestsEnum.GET.name(), endpointConfig, null);
     }
+
+    public ApiResponse getUnconfirmedTxsByAddress(String address, Map<String, String> params) {
+        String endpoint = String.format("/%s/unconfirmed-transactions", address);
+
+        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        if (pair.getValue() != null) {
+            return Utils.setApiResponse(pair.getValue());
+        }
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url.concat(pair.getKey()), endpointConfig, endpoint),
+                HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
+
+    public ApiResponse getBasicTxsByAddress(String address, Map<String, String> params) {
+        String endpoint = String.format("/%s/basic/transactions", address);
+
+        Pair<String, ApiError> pair = Utils.setQueryParams(params);
+        if (pair.getValue() != null) {
+            return Utils.setApiResponse(pair.getValue());
+        }
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url.concat(pair.getKey()), endpointConfig, endpoint),
+                HttpsRequestsEnum.GET.name(), endpointConfig, null);
+    }
 }

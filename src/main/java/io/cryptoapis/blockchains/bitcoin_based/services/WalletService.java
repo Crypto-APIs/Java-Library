@@ -1,5 +1,7 @@
 package io.cryptoapis.blockchains.bitcoin_based.services;
 
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.CreateTransaction;
+import io.cryptoapis.blockchains.bitcoin_based.models.Transaction.HdWalletTransactionSize;
 import io.cryptoapis.blockchains.bitcoin_based.models.Wallet.HDWallet;
 import io.cryptoapis.blockchains.bitcoin_based.models.Wallet.ImportAddress;
 import io.cryptoapis.blockchains.bitcoin_based.models.Wallet.Wallet;
@@ -142,5 +144,13 @@ public class WalletService extends AbstractServicesConfig {
 
         return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.DELETE.name(), endpointConfig,
                 null);
+    }
+
+    public ApiResponse getHdWalletTransactionSize(String walletName, String password, List<CreateTransaction.Inputs> inputs,
+                                                  List<CreateTransaction.Outputs> outputs, CreateTransaction.Fee fee, Integer locktime) {
+        String endpoint = "/hd/txs/size";
+
+        return WebServices.httpsRequest(WebServices.formatUrl(url, endpointConfig, endpoint), HttpsRequestsEnum.POST.name(), endpointConfig,
+                HdWalletTransactionSize.getHdWalletTransactionSize(walletName, password, inputs, outputs, fee, locktime).toString());
     }
 }
