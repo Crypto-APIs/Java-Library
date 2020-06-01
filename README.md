@@ -14,14 +14,14 @@ Java 8:
 <dependency>
     <groupId>io.cryptoapis</groupId>
     <artifactId>cryptoapis-java-client</artifactId>
-    <version>1.2.6</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 ### Gradle
 Java 8:
 
 ```java
-compile("io.cryptoapis:cryptoapis-java-client:1.2.6")
+compile("io.cryptoapis:cryptoapis-java-client:1.3.0")
 ```
 
 ## How to use
@@ -1015,8 +1015,8 @@ System.out.println(res.getResponse());
 |     AddressService     | BlockchainService    | TransactionService  |  BlockService  |               
 | ---------------------- | -------------------- | ------------------  | -------------- |
 | getAddressInfo         | getBlockchainInfo    | getTx x3            | getBlock x2    |
-| getTxsByAddress        |                      | signTransaction     | getLatestBlock |
-| generateNewAddress     |                      | getTxByIdxAndLimit  |                |
+| getTxsByAddress        |                      | getTxByIdxAndLimit  | getLatestBlock |
+| generateNewAddress     |                      |                     |                |
 |                        |                      |                     |                |
 
      
